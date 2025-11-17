@@ -42,7 +42,7 @@ application {
 }
 
 javafx {
-    version = "25"
+    version = "22"
 
     // Define JavaFX modules
     modules("javafx.fxml")
