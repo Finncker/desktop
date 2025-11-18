@@ -6,3 +6,7 @@ build
 
 # Ignore .class files
 .class
+
+# Ignore .idea, .vscode folders
+.idea
+.vscode
