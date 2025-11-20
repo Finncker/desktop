@@ -1,4 +1,4 @@
-package com.github.finncker.desktop.model;
+package com.github.finncker.desktop.model.entities;
 
 import java.util.ArrayList;
 import java.util.List;
