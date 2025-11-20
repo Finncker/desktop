@@ -24,4 +24,12 @@ public class Account {
 
     @Builder.Default
     private List<Transaction> transactions = new ArrayList<Transaction>();
+
+    @Builder
+    public Account(String id, String name, double initialBalance) {
+        this.id = id;
+        this.name = name;
+        this.initialBalance = initialBalance;
+        this.transactions = (transactions == null ? new ArrayList<Transaction>() : transactions)
+    }
 }
