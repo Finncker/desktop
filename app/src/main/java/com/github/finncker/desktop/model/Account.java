@@ -30,6 +30,6 @@ public class Account {
         this.id = id;
         this.name = name;
         this.initialBalance = initialBalance;
-        this.transactions = (transactions == null ? new ArrayList<Transaction>() : transactions)
+        this.transactions = (transactions == null ? new ArrayList<Transaction>() : transactions);
     }
 }
