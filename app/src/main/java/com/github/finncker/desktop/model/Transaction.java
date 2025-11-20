@@ -26,11 +26,11 @@ public class Transaction {
     @Builder.Default
     private LocalDate date = LocalDate.now();
 
-    public Transaction(String id, String categoryId, double amount, String description) {
-        this.id = UUID.randomUUID();
+    public Transaction(UUID id, String categoryId, double amount, String description) {
+        this.id = (id == null ? UUID.randomUUID() : id);
         this.categoryId = categoryId;
         this.amount = amount;
         this.description = description;
-        this.date = LocalDate.now();
+        this.date = (date == null ? LocalDate.now() : date);
     }
 }
