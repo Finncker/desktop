@@ -2,6 +2,7 @@ package com.github.finncker.desktop.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,4 +25,12 @@ public class User {
 
     @Builder.Default
     private List<Account> accounts = new ArrayList<Account>();
+
+    @Builder
+    public User(String id, String fullName, String email) {
+        this.id = id;
+        this.fullName = fullName;
+        this.email = email;
+        this.accounts = (accounts == null ? new ArrayList<>() : accounts);
+    }
 }
