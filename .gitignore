@@ -10,3 +10,7 @@ build
 # Ignore .idea, .vscode folders
 .idea
 .vscode
+
+# ignore /bin folder
+/bin
+bin

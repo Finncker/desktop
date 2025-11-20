@@ -2,7 +2,6 @@ package com.github.finncker.desktop.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
