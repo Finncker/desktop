@@ -26,6 +26,7 @@ public class Transaction {
     @Builder.Default
     private LocalDate date = LocalDate.now();
 
+    @Builder
     public Transaction(UUID id, String categoryId, double amount, String description) {
         this.id = (id == null ? UUID.randomUUID() : id);
         this.categoryId = categoryId;
