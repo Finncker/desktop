@@ -25,3 +25,4 @@ public class User {
     @Builder.Default
     private List<Account> accounts = new ArrayList<Account>();
 }
+    
