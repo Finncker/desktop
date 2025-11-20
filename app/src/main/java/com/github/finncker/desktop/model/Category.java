@@ -25,4 +25,13 @@ public class Category {
 
     @Builder.Default
     private List<Transaction> transactionsCategory = new ArrayList<Transaction>();
+
+    @Builder
+    public Category(String id, String userId, String name, String type) {
+        this.id = id;
+        this.userId = userId;
+        this.name = name;
+        this.type = type;
+        this.transactionsCategory = (transactionsCategory == null ? new ArrayList<Transaction>() : transactionsCategory);
+    }
 }
