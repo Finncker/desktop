@@ -1,4 +1,4 @@
-package com.github.finncker.desktop.model;
+package com.github.finncker.desktop.model.entities;
 
 import java.time.LocalDate;
 import java.util.UUID;

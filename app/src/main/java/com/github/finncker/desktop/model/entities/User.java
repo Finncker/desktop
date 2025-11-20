@@ -1,8 +1,7 @@
-package com.github.finncker.desktop.model;
+package com.github.finncker.desktop.model.entities;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
