@@ -1,8 +1,8 @@
 package com.github.finncker.desktop.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,7 +17,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 @ToString(exclude = "accounts")
-public class User {
+public class User implements Serializable {
 
     private String id;
     private String fullName;
