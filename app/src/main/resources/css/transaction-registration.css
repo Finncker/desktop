@@ -1,0 +1,255 @@
+
+.modal-container {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 16px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 30, 0, 0, 10);
+    -fx-font-family: "Segoe UI", "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+
+.modal-title {
+    -fx-font-size: 28px;
+    -fx-font-weight: 700;
+    -fx-fill: #1a1a1a;
+    -fx-font-family: "Segoe UI", "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+.modal-subtitle {
+    -fx-font-size: 14px;
+    -fx-fill: #999999;
+    -fx-line-spacing: 1.5;
+    -fx-font-family: "Segoe UI", "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+.field-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #2c3e50;
+    -fx-font-family: "Segoe UI", "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+.close-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #cccccc;
+    -fx-font-size: 24px;
+    -fx-cursor: hand;
+    -fx-padding: 5 10 5 10;
+    -fx-background-radius: 4px;
+    -fx-font-family: "Segoe UI", "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+.close-button:hover {
+    -fx-background-color: #f5f5f5;
+    -fx-text-fill: #666666;
+}
+
+.custom-text-field,
+.custom-combo-box,
+.custom-date-picker,
+.custom-text-area {
+    -fx-background-color: #f8f9fa;
+    -fx-background-radius: 8px;
+    -fx-border-color: transparent;
+    -fx-border-radius: 8px;
+    -fx-border-width: 1px;
+    -fx-padding: 12 16 12 16;
+    -fx-font-size: 14px;
+    -fx-text-fill: #a0a0a0;
+    -fx-prompt-text-fill: #c0c0c0;
+    -fx-font-family: "Segoe UI", "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+.custom-text-field {
+    -fx-pref-height: 40px;
+    -fx-max-height: 40px;
+    -fx-min-height: 40px;
+}
+
+.custom-text-field:focused,
+.custom-combo-box:focused,
+.custom-date-picker:focused,
+.custom-text-area:focused {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 1px;
+}
+
+.custom-text-field:hover,
+.custom-combo-box:hover,
+.custom-date-picker:hover,
+.custom-text-area:hover {
+    -fx-background-color: #f0f0f0;
+}
+
+.custom-combo-box {
+    -fx-padding: 0;
+}
+
+.custom-combo-box .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: #a0a0a0;
+    -fx-padding: 12 16 12 16;
+    -fx-font-size: 14px;
+    -fx-font-family: "Segoe UI", "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+.custom-combo-box .arrow-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0 12 0 0;
+}
+
+.custom-combo-box .arrow {
+    -fx-background-color: #999999;
+    -fx-padding: 4px;
+}
+
+.custom-date-picker {
+    -fx-pref-height: 40px;
+    -fx-max-height: 40px;
+    -fx-min-height: 40px;
+}
+
+.custom-date-picker .text-field {
+    -fx-background-color: transparent;
+    -fx-background-radius: 8px;
+    -fx-padding: 12 16 12 16;
+    -fx-font-size: 14px;
+    -fx-text-fill: #a0a0a0;
+    -fx-prompt-text-fill: #c0c0c0;
+    -fx-font-family: "Segoe UI", "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+.custom-date-picker .arrow-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0 12 0 0;
+}
+
+.custom-date-picker .arrow {
+    -fx-background-color: #666666;
+}
+
+/* TextArea Specifics */
+.custom-text-area .content {
+    -fx-background-color: transparent;
+}
+
+.custom-text-area .scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.custom-text-area .scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.toggle-group-container {
+    -fx-background-color: #f0f0f0;
+    -fx-background-radius: 8px;
+    -fx-padding: 4;
+}
+
+.toggle-left,
+.toggle-right {
+    -fx-background-color: transparent;
+    -fx-text-fill: #666666;
+    -fx-font-size: 14px;
+    -fx-font-weight: 500;
+    -fx-padding: 10 20 10 20;
+    -fx-cursor: hand;
+    -fx-border-color: transparent;
+    -fx-font-family: "Segoe UI", "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+.toggle-left {
+    -fx-background-radius: 6 0 0 6;
+}
+
+.toggle-right {
+    -fx-background-radius: 0 6 6 0;
+}
+
+.toggle-left:selected,
+.toggle-right:selected {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 6px;
+    -fx-text-fill: #2c5282;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.08), 4, 0, 0, 2);
+}
+
+.toggle-left:hover,
+.toggle-right:hover {
+    -fx-text-fill: #2c3e50;
+}
+
+.toggle-left:hover:selected,
+.toggle-right:hover:selected {
+    -fx-text-fill: #2c5282;
+}
+
+.save-button {
+    -fx-background-color: #1e3a8a;
+    -fx-text-fill: #ffffff;
+    -fx-background-radius: 8px;
+    -fx-font-size: 15px;
+    -fx-font-weight: 700;
+    -fx-padding: 14 28 14 28;
+    -fx-cursor: hand;
+    -fx-border-color: transparent;
+    -fx-font-family: "Segoe UI", "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+.save-button:hover {
+    -fx-background-color: #1e40af;
+}
+
+.save-button:pressed {
+    -fx-background-color: #1e3a8a;
+    -fx-effect: dropshadow(gaussian, rgba(30, 58, 138, 0.3), 8, 0, 0, 2);
+}
+
+.cancel-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 8px;
+    -fx-border-color: #e0e0e0;
+    -fx-border-radius: 8px;
+    -fx-border-width: 1px;
+    -fx-text-fill: #666666;
+    -fx-font-size: 14px;
+    -fx-font-weight: 500;
+    -fx-padding: 10 24 10 24;
+    -fx-cursor: hand;
+    -fx-font-family: "Segoe UI", "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+.cancel-button:hover {
+    -fx-background-color: #f5f5f5;
+    -fx-border-color: #cccccc;
+    -fx-text-fill: #333333;
+}
+
+.cancel-button:pressed {
+    -fx-background-color: #eeeeee;
+}
+
+.scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+.scroll-bar:vertical .track {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #cccccc;
+    -fx-background-radius: 10px;
+}
+
+.scroll-bar:vertical .thumb:hover {
+    -fx-background-color: #999999;
+}
+
+.scroll-bar:vertical .increment-button,
+.scroll-bar:vertical .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}

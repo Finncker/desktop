@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox prefHeight="800.0" prefWidth="900.0" spacing="20.0" styleClass="main-container" stylesheets="@../css/transactions.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.finncker.desktop.controllers.TransactionsController">
+   <padding>
+      <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+   </padding>
+   
+   <!-- Header with Action Buttons -->
+   <HBox alignment="CENTER_LEFT" spacing="15.0">
+      <VBox spacing="8.0" HBox.hgrow="ALWAYS">
+         <Text styleClass="page-title" text="Transações" />
+         <Text styleClass="page-subtitle" text="Gerencie todas as suas transações financeiras" />
+      </VBox>
+      <Button fx:id="exportButton" mnemonicParsing="false" onAction="#handleExport" styleClass="secondary-button" text="📥 Exportar" />
+      <Button fx:id="newTransactionButton" mnemonicParsing="false" onAction="#handleNewTransaction" styleClass="primary-button" text="+ Nova Transação" />
+   </HBox>
+   
+   <!-- Filters Bar -->
+   <HBox alignment="CENTER_LEFT" spacing="15.0">
+      <TextField fx:id="searchField" prefWidth="400.0" promptText="🔍 Buscar transações..." styleClass="search-field" HBox.hgrow="ALWAYS" />
+      <ComboBox fx:id="filterComboBox" prefWidth="150.0" promptText="Todas" styleClass="filter-combo" />
+      <DatePicker fx:id="periodPicker" prefWidth="180.0" promptText="📅 Período" styleClass="period-picker" />
+   </HBox>
+   
+   <!-- Transactions List -->
+   <ScrollPane fitToWidth="true" styleClass="transactions-scroll" VBox.vgrow="ALWAYS">
+      <VBox fx:id="transactionsContainer" spacing="12.0" styleClass="transactions-list">
+         <padding>
+            <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+         </padding>
+         
+         <!-- Transaction Item Example 1 - Income -->
+         <HBox alignment="CENTER_LEFT" spacing="15.0" styleClass="transaction-item">
+            <padding>
+               <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
+            </padding>
+            <VBox alignment="CENTER" styleClass="icon-container, income-icon">
+               <Text styleClass="transaction-icon" text="💼" />
+            </VBox>
+            <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+               <Text styleClass="transaction-title" text="Salário" />
+               <HBox spacing="8.0">
+                  <Label styleClass="transaction-category, income-category" text="Receita" />
+                  <Text styleClass="transaction-date" text="01/06/2025" />
+               </HBox>
+            </VBox>
+            <VBox alignment="CENTER_RIGHT">
+               <Text styleClass="transaction-amount, income-amount" text="+R$ 8450.00" />
+               <Text styleClass="transaction-trend, income-trend" text="📈" />
+            </VBox>
+         </HBox>
+         
+         <!-- Transaction Item Example 2 - Expense -->
+         <HBox alignment="CENTER_LEFT" spacing="15.0" styleClass="transaction-item">
+            <padding>
+               <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
+            </padding>
+            <VBox alignment="CENTER" styleClass="icon-container, expense-icon">
+               <Text styleClass="transaction-icon" text="🏠" />
+            </VBox>
+            <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+               <Text styleClass="transaction-title" text="Aluguel" />
+               <HBox spacing="8.0">
+                  <Label styleClass="transaction-category, expense-category" text="Moradia" />
+                  <Text styleClass="transaction-date" text="05/06/2025" />
+               </HBox>
+            </VBox>
+            <VBox alignment="CENTER_RIGHT">
+               <Text styleClass="transaction-amount, expense-amount" text="R$ 2200.00" />
+               <Text styleClass="transaction-trend, expense-trend" text="📉" />
+            </VBox>
+         </HBox>
+         
+         <!-- Transaction Item Example 3 - Expense -->
+         <HBox alignment="CENTER_LEFT" spacing="15.0" styleClass="transaction-item">
+            <padding>
+               <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
+            </padding>
+            <VBox alignment="CENTER" styleClass="icon-container, expense-icon">
+               <Text styleClass="transaction-icon" text="🛒" />
+            </VBox>
+            <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+               <Text styleClass="transaction-title" text="Supermercado" />
+               <HBox spacing="8.0">
+                  <Label styleClass="transaction-category, expense-category" text="Alimentação" />
+                  <Text styleClass="transaction-date" text="08/06/2025" />
+               </HBox>
+            </VBox>
+            <VBox alignment="CENTER_RIGHT">
+               <Text styleClass="transaction-amount, expense-amount" text="R$ 580.50" />
+               <Text styleClass="transaction-trend, expense-trend" text="📉" />
+            </VBox>
+         </HBox>
+         
+      </VBox>
+   </ScrollPane>
+</VBox>
