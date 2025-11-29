@@ -1,42 +1,40 @@
 package com.github.finncker.desktop.service;
 
 import com.github.finncker.desktop.model.entities.User;
+import com.github.finncker.desktop.model.exceptions.UserAlreadyExists;
+import com.github.finncker.desktop.model.exceptions.UserNotFoundEmailException;
+import com.github.finncker.desktop.model.exceptions.UserNotFoundIdException;
 import com.github.finncker.desktop.model.repository.UserRepository;
 
 public class UserService {
 
     private UserRepository userRepo = new UserRepository();
 
-    public User create(User user) {
+    public User create(User user) throws UserAlreadyExists {
         User existing = userRepo.readByEmail(user.getEmail());
 
         if (existing != null) {
-            // CRIAR ESSA EXCEPTION PERSONALIZADA
-            throw new IllegalArgumentException("Email já cadastrado!");
+            throw new UserAlreadyExists();
         }
 
         return userRepo.create(user);
     }
 
-    public User read(String id) {
+    public User read(String id) throws UserNotFoundIdException {
         User u = userRepo.read(id);
 
         if (u == null) {
-            // CRIAR AQUI A EXCEPTION DE UserNotFoundException e chamar.
-            // Deixar a mensagem na classe personalizada.
-            // throw new UserNotFoundException("Usuário não encontrado: " + id);
+            throw new UserNotFoundIdException(id);
         }
 
         return u;
     }
 
-    public User readByEmail(String email) {
+    public User readByEmail(String email) throws UserNotFoundEmailException {
         User u = userRepo.readByEmail(email);
 
         if (u == null) {
-            // CRIAR AQUI A EXCEPTION DE UserNotFoundException e chamar.
-            // Deixar a mensagem na classe personalizada.
-            // throw new UserNotFoundException("Email não encontrado: " + email);
+            throw new UserNotFoundEmailException(email);
         }
 
         return u;
@@ -46,13 +44,11 @@ public class UserService {
         return userRepo.update(user);
     }
 
-    public boolean delete(String id) {
+    public boolean delete(String id) throws UserNotFoundIdException {
         boolean deleted = userRepo.delete(id);
-        
+
         if (!deleted) {
-            // CRIAR AQUI A EXCEPTION DE UserNotFoundException e chamar.
-            // Deixar a mensagem na classe personalizada.
-            // throw new UserNotFoundException("Usuário não encontrado");
+            throw new UserNotFoundIdException(id);
         }
 
         return true;

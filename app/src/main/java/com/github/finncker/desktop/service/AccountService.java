@@ -2,6 +2,7 @@ package com.github.finncker.desktop.service;
 
 import com.github.finncker.desktop.model.entities.Account;
 import com.github.finncker.desktop.model.entities.Transaction;
+import com.github.finncker.desktop.model.exceptions.AccountNotFoundException;
 import com.github.finncker.desktop.model.repository.AccountRepository;
 import com.github.finncker.desktop.model.repository.TransactionRepository;
 
@@ -14,11 +15,11 @@ public class AccountService {
         return accRepo.create(acc);
     }
 
-    public Account read(String id) {
+    public Account read(String id) throws AccountNotFoundException {
         Account a = accRepo.read(id);
 
         if (a == null) {
-            // throw new AccountNotFoundException("Conta não encontrada: " + id);
+            throw new AccountNotFoundException(id);
         }
 
         return a;
@@ -28,11 +29,11 @@ public class AccountService {
         return accRepo.update(acc);
     }
 
-    public boolean delete(String id) {
+    public boolean delete(String id) throws AccountNotFoundException {
         boolean deleted = accRepo.delete(id);
 
         if (!deleted) {
-            // throw new AccountNotFoundException("Conta não existe: " + id);
+            throw new AccountNotFoundException(id);
         }
 
         return true;
