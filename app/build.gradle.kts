@@ -26,13 +26,6 @@ dependencies {
     // Lombok dependencies for testing
 	testCompileOnly("org.projectlombok:lombok:1.18.42")
 	testAnnotationProcessor("org.projectlombok:lombok:1.18.42")
-
-    // SLF4J API
-    implementation("org.slf4j:slf4j-api:2.0.12")
-
-    // Console logger simples (prints to terminal)
-    implementation("org.slf4j:slf4j-simple:2.0.12")
-
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
