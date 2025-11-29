@@ -17,7 +17,7 @@
   <effect>
     <DropShadow height="5.0" radius="2.0" width="5.0">
       <color>
-        <Color opacity="0.20000000298023224"/>
+        <Color opacity="0.2"/>
       </color>
     </DropShadow>
   </effect>
@@ -58,8 +58,8 @@
     <Separator prefWidth="200.0"/>
     <AnchorPane>
       <children>
-        <Label text="Ultima Transação" AnchorPane.leftAnchor="0.0"/>
-        <Label text="A dois dias" AnchorPane.rightAnchor="0.0"/>
+        <Label text="Última Transação" AnchorPane.leftAnchor="0.0"/>
+        <Label text="Há dois dias" AnchorPane.rightAnchor="0.0"/>
       </children>
     </AnchorPane>
   </children>
