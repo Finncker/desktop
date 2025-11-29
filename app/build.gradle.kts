@@ -30,7 +30,11 @@ dependencies {
     // SLF4J API
     implementation("org.slf4j:slf4j-api:2.0.12")
 
-    // Console logger simples (prints to terminal)
+     // Lombok + SLF4J
+    compileOnly("org.projectlombok:lombok-slf4j:1.18.22")
+    annotationProcessor("org.projectlombok:lombok-slf4j:1.18.22")
+
+    // SLF4J Simple Logger
     implementation("org.slf4j:slf4j-simple:2.0.12")
 }
 
