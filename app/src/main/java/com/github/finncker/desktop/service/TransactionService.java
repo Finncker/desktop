@@ -28,7 +28,7 @@ public class TransactionService {
     public boolean delete(String tct){
         boolean deleted = transRepo.delete(tct);
 
-        if (!deleted){
+        if(!deleted){
             //throw new exception TransactionNotFound("Transação não encontrada " + tct)
         }
 
