@@ -1,5 +1,6 @@
 package com.github.finncker.desktop.model.entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +17,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 @ToString(exclude = "transactions")
-public class Account {
+public class Account implements Serializable {
     
     private String id;
     private String name;

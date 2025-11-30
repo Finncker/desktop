@@ -9,7 +9,7 @@
    <center>
       <ImageView fitHeight="512.0" fitWidth="512.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
          <image>
-            <Image url="/images/finncker-logo.png" />
+            <Image url="/images/finncker.jpeg" />
          </image>
       </ImageView>
    </center>

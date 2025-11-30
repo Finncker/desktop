@@ -1,5 +1,6 @@
 package com.github.finncker.desktop.model.entities;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -16,7 +17,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 @ToString
-public class Transaction {
+public class Transaction implements Serializable {
     
     private UUID id;
     private String categoryId;
