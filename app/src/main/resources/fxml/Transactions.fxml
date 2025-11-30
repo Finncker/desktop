@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #F9FAFB;" stylesheets="@../css/transactions.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.finncker.desktop.controllers.TransactionsController">
+   <left>
+      <fx:include source="SidePanelView.fxml" />
+   </left>
+   <center>
+<VBox spacing="20.0" styleClass="main-container" BorderPane.alignment="CENTER">
+   <padding>
+      <Insets bottom="30.0" left="30.0" right="30.0" top="15.0" />
+   </padding>
+   
+   <HBox alignment="CENTER_LEFT" spacing="15.0">
+      <VBox spacing="8.0" HBox.hgrow="ALWAYS">
+         <Text styleClass="page-title" text="Transações" />
+         <Text styleClass="page-subtitle" text="Gerencie todas as suas transações financeiras" />
+      </VBox>
+      <HBox fx:id="actionButtonsGroup" spacing="15.0">
+         <Button fx:id="newTransactionButton" mnemonicParsing="false" onAction="#handleNewTransaction" styleClass="primary-button" style="-fx-font-weight: bold;" text="+ Nova Transação" HBox.hgrow="ALWAYS" maxWidth="Infinity" />
+      </HBox>
+   </HBox>
+   
+   <HBox alignment="CENTER_LEFT" spacing="15.0">
+      <HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="search-field" style="-fx-background-radius: 15; -fx-border-radius: 15;" prefHeight="50.0" HBox.hgrow="ALWAYS">
+         <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../images/search-icon.png" />
+            </image>
+         </ImageView>
+         <TextField fx:id="searchField" prefWidth="400.0" promptText="Buscar transações..." style="-fx-background-color: transparent; -fx-border-width: 0;" HBox.hgrow="ALWAYS" />
+      </HBox>
+      <HBox fx:id="filterButtonsGroup" spacing="15.0">
+         <Button fx:id="filterButton" mnemonicParsing="false" onAction="#handleFilterClick" styleClass="filter-combo" style="-fx-background-radius: 15; -fx-border-radius: 15;" prefHeight="50.0">
+            <graphic>
+               <HBox alignment="CENTER" spacing="8.0">
+                  <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/filter-icon.png" />
+                     </image>
+                  </ImageView>
+                  <Text text="Todas" />
+               </HBox>
+            </graphic>
+         </Button>
+         <Button fx:id="periodButton" mnemonicParsing="false" onAction="#handlePeriodClick" styleClass="period-picker" style="-fx-background-radius: 15; -fx-border-radius: 15;" prefHeight="50.0">
+            <graphic>
+               <HBox alignment="CENTER" spacing="8.0">
+                  <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/period-icon.png" />
+                     </image>
+                  </ImageView>
+                  <Text text="Período" />
+               </HBox>
+            </graphic>
+         </Button>
+         <Button fx:id="exportButton" mnemonicParsing="false" onAction="#handleExport" styleClass="secondary-button" style="-fx-background-radius: 15; -fx-border-radius: 15;" prefHeight="50.0">
+            <graphic>
+               <HBox alignment="CENTER" spacing="8.0">
+                  <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/download-icon.png" />
+                     </image>
+                  </ImageView>
+                  <Text text="Exportar" />
+               </HBox>
+            </graphic>
+         </Button>
+      </HBox>
+   </HBox>
+   
+   <ScrollPane fitToWidth="true" styleClass="transactions-scroll" VBox.vgrow="ALWAYS">
+      <VBox fx:id="transactionsContainer" spacing="12.0" styleClass="transactions-list">
+         <padding>
+            <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+         </padding>
+         
+         <!-- Examples-->
+         <HBox alignment="CENTER_LEFT" spacing="15.0" styleClass="transaction-item">
+            <padding>
+               <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
+            </padding>
+            <VBox alignment="CENTER" styleClass="icon-container">
+               <Text styleClass="transaction-icon" text="💼" />
+            </VBox>
+            <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+               <Text styleClass="transaction-title" text="Salário" />
+               <HBox spacing="8.0">
+                  <Label styleClass="transaction-category, income-category" text="Receita" />
+                  <Text styleClass="transaction-date" text="01/06/2025" />
+               </HBox>
+            </VBox>
+            <VBox alignment="CENTER_RIGHT">
+               <Text styleClass="transaction-amount, income-amount" text="+R$ 8450.00" />
+            </VBox>
+         </HBox>
+         
+         <HBox alignment="CENTER_LEFT" spacing="15.0" styleClass="transaction-item">
+            <padding>
+               <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
+            </padding>
+            <VBox alignment="CENTER" styleClass="icon-container">
+               <Text styleClass="transaction-icon" text="🏠" />
+            </VBox>
+            <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+               <Text styleClass="transaction-title" text="Aluguel" />
+               <HBox spacing="8.0">
+                  <Label styleClass="transaction-category, expense-category" text="Moradia" />
+                  <Text styleClass="transaction-date" text="05/06/2025" />
+               </HBox>
+            </VBox>
+            <VBox alignment="CENTER_RIGHT">
+               <Text styleClass="transaction-amount, expense-amount" text="-R$ 2200.00" />
+            </VBox>
+         </HBox>
+         
+         <HBox alignment="CENTER_LEFT" spacing="15.0" styleClass="transaction-item">
+            <padding>
+               <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
+            </padding>
+            <VBox alignment="CENTER" styleClass="icon-container">
+               <Text styleClass="transaction-icon" text="🛒" />
+            </VBox>
+            <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+               <Text styleClass="transaction-title" text="Supermercado" />
+               <HBox spacing="8.0">
+                  <Label styleClass="transaction-category, expense-category" text="Alimentação" />
+                  <Text styleClass="transaction-date" text="08/06/2025" />
+               </HBox>
+            </VBox>
+            <VBox alignment="CENTER_RIGHT">
+               <Text styleClass="transaction-amount, expense-amount" text="-R$ 580.50" />
+            </VBox>
+         </HBox>
+         
+      </VBox>
+   </ScrollPane>
+</VBox>
+   </center>
+</BorderPane>

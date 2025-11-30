@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="656.0" prefWidth="550.0" spacing="20.0" styleClass="modal-container" stylesheets="@../css/transaction-registration.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.finncker.desktop.controllers.AccountRegistrationController">
+   <padding>
+      <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+   </padding>
+   
+   <!-- Header -->
+   <HBox alignment="CENTER_LEFT" spacing="10.0">
+      <VBox.margin>
+         <Insets bottom="10.0" />
+      </VBox.margin>
+      <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+         <Text styleClass="modal-title" text="Nova Conta" />
+         <Text styleClass="modal-subtitle" text="Adicione uma nova conta bancária, cartão ou investimento" wrappingWidth="434.4000244140625" />
+      </VBox>
+      <Button fx:id="closeButton" mnemonicParsing="false" onAction="#handleClose" styleClass="close-button" text="✕" />
+   </HBox>
+   
+   <!-- Tipo de Conta -->
+   <VBox spacing="8.0">
+      <Label styleClass="field-label" text="Tipo de Conta *" />
+      <ComboBox fx:id="accountTypeComboBox" prefWidth="790.0" promptText="Conta Corrente" styleClass="custom-combo-box" />
+   </VBox>
+   
+   <!-- Nome da Conta -->
+   <VBox spacing="8.0">
+      <Label styleClass="field-label" text="Nome da Conta *" />
+      <TextField fx:id="accountNameField" prefWidth="790.0" promptText="Ex: Conta Corrente Principal" styleClass="custom-text-field" />
+   </VBox>
+   
+   <!-- Instituição Financeira -->
+   <VBox spacing="8.0">
+      <Label styleClass="field-label" text="Instituição Financeira *" />
+      <TextField fx:id="financialInstitutionField" prefWidth="790.0" promptText="Ex: Banco do Brasil, Nubank..." styleClass="custom-text-field" />
+   </VBox>
+   
+   <!-- Saldo Inicial e Número da Conta -->
+   <HBox spacing="15.0">
+      <VBox spacing="8.0" HBox.hgrow="ALWAYS">
+         <Label styleClass="field-label" text="Saldo Inicial" />
+         <TextField fx:id="initialBalanceField" prefWidth="387.0" promptText="0,00" styleClass="custom-text-field" />
+      </VBox>
+      <VBox spacing="8.0" HBox.hgrow="ALWAYS">
+         <Label styleClass="field-label" text="Número da Conta" />
+         <TextField fx:id="accountNumberField" prefWidth="387.0" promptText="Ex: 1234-5" styleClass="custom-text-field" />
+      </VBox>
+   </HBox>
+   
+   <!-- Cor de Identificação -->
+   <VBox spacing="8.0">
+      <Label styleClass="field-label" text="Cor de Identificação" />
+      <ComboBox fx:id="colorComboBox" prefWidth="790.0" promptText="Azul" styleClass="custom-combo-box" />
+   </VBox>
+   
+   <!-- Buttons -->
+   <HBox spacing="15.0">
+      <VBox.margin>
+         <Insets top="10.0" />
+      </VBox.margin>
+      <Button fx:id="saveButton" mnemonicParsing="false" onAction="#handleSave" prefHeight="50.0" prefWidth="494.0" styleClass="save-button" text="Salvar Conta" HBox.hgrow="ALWAYS" />
+   </HBox>
+</VBox>

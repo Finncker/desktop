@@ -4,14 +4,9 @@
 # Ignore Gradle build output directory
 build
 
-# Ignore .class files
-*.class
+# Ignore build files in app/bin directory
+app/bin
 
 # Ignore .idea, .vscode folders
 .idea
 .vscode
-
-# ignore /bin folder
-/bin
-bin
-app/bin
