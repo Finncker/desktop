@@ -61,24 +61,22 @@ public class AccountRegistrationController {
 
     private void setupValueValidation() {
         initialBalanceField.setPromptText("0,00");
-        initialBalanceField.textProperty().addListener((obs, oldVal, newVal) -> {
-            if (newVal == null || newVal.isEmpty())
+        initialBalanceField.textProperty().addListener((obs, oldValor, novoValor) -> {
+            if (novoValor == null || novoValor.isEmpty())
                 return;
 
-            // Permite valores negativos para saldo inicial
-            String filtered = newVal.replace(".", ",");
+            String filtered = novoValor.replace(".", ",");
 
-            // Verifica se começa com sinal negativo
             boolean isNegative = filtered.startsWith("-");
             String numberPart = isNegative ? filtered.substring(1) : filtered;
 
             if (!numberPart.matches("\\d*(,\\d{0,2})?") || numberPart.chars().filter(ch -> ch == ',').count() > 1) {
-                initialBalanceField.setText(oldVal);
+                initialBalanceField.setText(oldValor);
                 return;
             }
 
             String result = isNegative ? "-" + numberPart : numberPart;
-            if (!result.equals(newVal))
+            if (!result.equals(novoValor))
                 initialBalanceField.setText(result);
         });
     }

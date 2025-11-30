@@ -32,13 +32,11 @@ public class CategoryRegistrationController {
     }
 
     private void populateComboBoxes() {
-        // Tipos de categoria
         typeComboBox.getItems().addAll(
                 "Despesa",
                 "Receita");
         typeComboBox.setValue("Despesa");
 
-        // Ícones
         iconComboBox.getItems().addAll(
                 "🛒 Compras",
                 "🍔 Alimentação",

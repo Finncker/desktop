@@ -10,6 +10,9 @@ import lombok.extern.java.Log;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Log
 public class TransactionsController {
@@ -27,97 +30,27 @@ public class TransactionsController {
     @FXML
     private VBox transactionsContainer;
 
-    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
     @FXML
     public void initialize() {
-        setupFilters();
-        setupSearch();
+        if (exportButton != null) {
+            exportButton.setOnAction(e -> handleExport());
+        }
         loadTransactions();
     }
 
-    private void setupFilters() {
-        // Populate filter combo box
-        filterComboBox.getItems().addAll(
-                "Todas",
-                "Receitas",
-                "Despesas",
-                "Alimentação",
-                "Transporte",
-                "Moradia",
-                "Saúde",
-                "Educação",
-                "Lazer",
-                "Outros");
-        filterComboBox.setValue("Todas");
-
-        // Add listener for filter changes
-        filterComboBox.setOnAction(e -> filterTransactions());
-        periodPicker.setOnAction(e -> filterTransactions());
-    }
-
-    private void setupSearch() {
-        // Add listener for search field
-        searchField.textProperty().addListener((obs, oldVal, newVal) -> {
-            filterTransactions();
-        });
-    }
-
-    private void loadTransactions() {
-        // This method will load transactions from the database
-        // For now, the example transactions are already in the FXML
-        log.info("Loading transactions...");
-
-        // TODO: Implement actual transaction loading from repository
-        // Example:
-        // transactionsContainer.getChildren().clear();
-        // List<Transaction> transactions = transactionRepository.findAll();
-        // transactions.forEach(this::addTransactionItem);
-    }
-
-    private void filterTransactions() {
-        String searchText = searchField.getText().toLowerCase();
-        String selectedFilter = filterComboBox.getValue();
-        LocalDate selectedDate = periodPicker.getValue();
-
-        log.info(String.format("Filtering transactions: search='%s', filter='%s', date='%s'",
-                searchText, selectedFilter, selectedDate));
-
-        // TODO: Implement actual filtering logic
-        // This would filter the transactions based on search text, category filter, and
-        // date
-    }
-
-    @FXML
-    private void handleNewTransaction() {
-        log.info("Opening new transaction dialog...");
-
-        // TODO: Open TransactionRegistration.fxml in a modal dialog
-        // Example:
-        // try {
-        // FXMLLoader loader = new
-        // FXMLLoader(getClass().getResource("/fxml/TransactionRegistration.fxml"));
-        // Parent root = loader.load();
-        // Stage stage = new Stage();
-        // stage.initModality(Modality.APPLICATION_MODAL);
-        // stage.setTitle("Nova Transação");
-        // stage.setScene(new Scene(root));
-        // stage.showAndWait();
-        // loadTransactions(); // Reload after adding
-        // } catch (IOException e) {
-        // log.severe("Error opening transaction dialog: " + e.getMessage());
-        // }
-    }
-
-    @FXML
     private void handleExport() {
-        log.info("Exporting transactions...");
-
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Exportar");
         alert.setHeaderText(null);
         alert.setContentText("Funcionalidade de exportação em desenvolvimento.");
         alert.showAndWait();
+    }
+
+    private void loadTransactions() {
+        if (transactionsContainer != null) {
+            transactionsContainer.getChildren().clear();
+        }
+        // TODO: Implement actual transaction loading
     }
 
     private void addTransactionItem(String title, String category, String date,
@@ -129,7 +62,7 @@ public class TransactionsController {
         transactionItem.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
 
         VBox iconContainer = new VBox();
-        iconContainer.getStyleClass().addAll("icon-container", isIncome ? "income-icon" : "expense-icon");
+        iconContainer.getStyleClass().add("icon-container");
         Text iconText = new Text(icon);
         iconText.getStyleClass().add("transaction-icon");
         iconContainer.getChildren().add(iconText);
@@ -153,14 +86,11 @@ public class TransactionsController {
         VBox amountContainer = new VBox();
         amountContainer.setAlignment(javafx.geometry.Pos.CENTER_RIGHT);
 
-        Text amountText = new Text((isIncome ? "+" : "") + amount);
+        Text amountText = new Text((isIncome ? "+" : "-") + amount);
         amountText.getStyleClass().addAll("transaction-amount",
                 isIncome ? "income-amount" : "expense-amount");
-        Text trendText = new Text(isIncome ? "📈" : "📉");
-        trendText.getStyleClass().addAll("transaction-trend",
-                isIncome ? "income-trend" : "expense-trend");
 
-        amountContainer.getChildren().addAll(amountText, trendText);
+        amountContainer.getChildren().add(amountText);
 
         transactionItem.getChildren().addAll(iconContainer, detailsContainer, amountContainer);
 
@@ -175,5 +105,24 @@ public class TransactionsController {
 
     public void refreshTransactions() {
         loadTransactions();
+    }
+
+    private static class Transaction {
+        String title;
+        String category;
+        LocalDate date;
+        String amount;
+        boolean isIncome;
+        String icon;
+
+        public Transaction(String title, String category, LocalDate date, String amount, boolean isIncome,
+                String icon) {
+            this.title = title;
+            this.category = category;
+            this.date = date;
+            this.amount = amount;
+            this.isIncome = isIncome;
+            this.icon = icon;
+        }
     }
 }
