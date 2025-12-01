@@ -1,38 +1,28 @@
 package com.github.finncker.desktop.model.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.math.BigDecimal;
+import java.util.UUID;
+
+import com.github.finncker.desktop.model.enums.CategoryType;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Getter
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of = "id")
-@ToString(exclude = "transactionsCategory")
+@EqualsAndHashCode(of = "uuid")
+@ToString
 public class Category implements Serializable {
-    
-    private String id;
-    private String userId;
+
+    private UUID uuid;
     private String name;
-    private String type;
+    private CategoryType type;
 
     @Builder.Default
-    private List<Transaction> transactionsCategory = new ArrayList<Transaction>();
-
-    @Builder
-    public Category(String id, String userId, String name, String type) {
-        this.id = id;
-        this.userId = userId;
-        this.name = name;
-        this.type = type;
-        this.transactionsCategory = (transactionsCategory == null ? new ArrayList<Transaction>() : transactionsCategory);
-    }
+    private BigDecimal budget = null;
 }
