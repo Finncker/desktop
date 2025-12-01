@@ -21,7 +21,7 @@ public class Transaction implements Serializable {
     @Builder.Default
     private UUID uuid = UUID.randomUUID();
 
-    private String categoryId;
+    private UUID categoryUUID;
     private BigDecimal amount;
     private String description;
 
