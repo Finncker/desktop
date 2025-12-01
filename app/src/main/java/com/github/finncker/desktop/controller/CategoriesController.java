@@ -1,4 +1,4 @@
-package com.github.finncker.desktop.controllers;
+package com.github.finncker.desktop.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
