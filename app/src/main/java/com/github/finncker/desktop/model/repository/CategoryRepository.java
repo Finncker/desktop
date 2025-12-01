@@ -1,31 +1,47 @@
 package com.github.finncker.desktop.model.repository;
 
+import java.util.UUID;
+
 import com.github.finncker.desktop.model.entities.Category;
+import com.github.finncker.desktop.model.entities.User;
+import com.github.finncker.desktop.model.exceptions.UserNotFoundException;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class CategoryRepository extends AbstractRepository<Category> {
-    
+public class CategoryRepository extends AbstractRepository {
+
     public CategoryRepository() {
-        super("categories.dat");
+        super();
     }
 
-    @Override
-    protected String getId(Category entity) {
-        return entity.getId();
+    public void create(Category category) throws UserNotFoundException {
+        User user = getUser();
+        user.getCategories().put(category.getUuid(), category);
+        setUser(user);
     }
 
-    @Override
-    protected boolean matchId(Category entity, String id) {
-        return entity.getId().equals(id);
+    public Category read(UUID uuid) throws UserNotFoundException {
+        User user = getUser();
+
+        return user.getCategories().get(uuid);
     }
 
-    public Category readByName(String name) {
-        log.debug("Buscando categoria pelo nome: {}", name);
-        return readAll().stream()
-                        .filter(c -> c.getName().equalsIgnoreCase(name))
-                        .findFirst()
-                        .orElse(null);
+    public void update(Category category) throws UserNotFoundException {
+        User user = getUser();
+
+        if (user.getCategories().containsKey(category.getUuid())) {
+            user.getCategories().put(category.getUuid(), category);
+            setUser(user);
+        }
+    }
+
+    public void delete(UUID uuid) throws UserNotFoundException {
+        User user = getUser();
+
+        if (user.getCategories().containsKey(uuid)) {
+            user.getCategories().remove(uuid);
+            setUser(user);
+        }
     }
 }
