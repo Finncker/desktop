@@ -28,10 +28,10 @@ public class UserRepository extends AbstractRepository {
         return getUser();
     }
 
-    public void updateUser(User user) throws UserNotFoundException {
+    public void updateUser(String fullName, String email) throws UserNotFoundException {
         User currentUser = getUser();
 
-        User newUser = User.builder().fullName(user.getFullName()).email(user.getEmail())
+        User newUser = User.builder().fullName(fullName).email(email)
                 .accounts(currentUser.getAccounts()).categories(currentUser.getCategories()).build();
 
         setUser(newUser);
