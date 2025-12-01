@@ -22,6 +22,10 @@ public class TransactionsController {
     @FXML
     private Button newTransactionButton;
     @FXML
+    private Button filterButton;
+    @FXML
+    private Button periodButton;
+    @FXML
     private TextField searchField;
     @FXML
     private ComboBox<String> filterComboBox;
@@ -32,13 +36,38 @@ public class TransactionsController {
 
     @FXML
     public void initialize() {
-        if (exportButton != null) {
-            exportButton.setOnAction(e -> handleExport());
-        }
         loadTransactions();
     }
 
-    private void handleExport() {
+    @FXML
+    public void handleNewTransaction() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Nova Transação");
+        alert.setHeaderText(null);
+        alert.setContentText("Funcionalidade de nova transação em desenvolvimento.");
+        alert.showAndWait();
+    }
+
+    @FXML
+    public void handleFilterClick() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Filtro");
+        alert.setHeaderText(null);
+        alert.setContentText("Funcionalidade de filtro em desenvolvimento.");
+        alert.showAndWait();
+    }
+
+    @FXML
+    public void handlePeriodClick() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Período");
+        alert.setHeaderText(null);
+        alert.setContentText("Funcionalidade de período em desenvolvimento.");
+        alert.showAndWait();
+    }
+
+    @FXML
+    public void handleExport() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Exportar");
         alert.setHeaderText(null);
