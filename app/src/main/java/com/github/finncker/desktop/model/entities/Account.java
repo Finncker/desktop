@@ -1,36 +1,30 @@
 package com.github.finncker.desktop.model.entities;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Getter
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of = "id")
+@EqualsAndHashCode(of = "uuid")
 @ToString(exclude = "transactions")
 public class Account implements Serializable {
-    
-    private String id;
+
+    @Builder.Default
+    private UUID uuid = UUID.randomUUID();
+
     private String name;
-    private double initialBalance;
+    private BigDecimal initialBalance;
 
     @Builder.Default
     private List<Transaction> transactions = new ArrayList<Transaction>();
-
-    @Builder
-    public Account(String id, String name, double initialBalance) {
-        this.id = id;
-        this.name = name;
-        this.initialBalance = initialBalance;
-        this.transactions = (transactions == null ? new ArrayList<Transaction>() : transactions);
-    }
 }
