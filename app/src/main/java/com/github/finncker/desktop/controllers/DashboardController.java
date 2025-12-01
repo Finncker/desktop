@@ -1,4 +1,4 @@
-package com.github.finncker.desktop.controller;
+package com.github.finncker.desktop.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
