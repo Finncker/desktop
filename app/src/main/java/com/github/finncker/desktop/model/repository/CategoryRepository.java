@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import com.github.finncker.desktop.model.entities.Category;
 import com.github.finncker.desktop.model.entities.User;
+import com.github.finncker.desktop.model.exceptions.CategoryNotFoundException;
 import com.github.finncker.desktop.model.exceptions.UserNotFoundException;
 
 import lombok.extern.slf4j.Slf4j;
@@ -15,33 +16,58 @@ public class CategoryRepository extends AbstractRepository {
         super();
     }
 
-    public void create(Category category) throws UserNotFoundException {
-        User user = getUser();
-        user.getCategories().put(category.getUuid(), category);
-        setUser(user);
-    }
-
-    public Category read(UUID uuid) throws UserNotFoundException {
-        User user = getUser();
-
-        return user.getCategories().get(uuid);
-    }
-
-    public void update(Category category) throws UserNotFoundException {
-        User user = getUser();
-
-        if (user.getCategories().containsKey(category.getUuid())) {
+    public void create(Category category) {
+        try {
+            User user = getUser();
             user.getCategories().put(category.getUuid(), category);
             setUser(user);
+        } catch (UserNotFoundException unfe) {
+            log.error("Erro ao criar categoria, usuário inexistente: {}", unfe);
         }
     }
 
-    public void delete(UUID uuid) throws UserNotFoundException {
-        User user = getUser();
+    public Category read(UUID uuid) throws CategoryNotFoundException {
+        Category category = null;
 
-        if (user.getCategories().containsKey(uuid)) {
-            user.getCategories().remove(uuid);
-            setUser(user);
+        try {
+            User user = getUser();
+            category = user.getCategories().get(uuid);
+        } catch (UserNotFoundException unfe) {
+            log.error("Erro ao criar categoria, usuário inexistente: {}", unfe);
+        }
+
+        if (category == null) {
+            throw new CategoryNotFoundException(uuid);
+        }
+
+        return category;
+    }
+
+    public void update(Category category) throws CategoryNotFoundException {
+        try {
+            User user = getUser();
+
+            if (user.getCategories().containsKey(category.getUuid())) {
+                user.getCategories().put(category.getUuid(), category);
+                setUser(user);
+            } else {
+                throw new CategoryNotFoundException(category.getUuid());
+            }
+        } catch (UserNotFoundException unfe) {
+            log.error("Erro ao atualizar categoria, usuário inexistente: {}", unfe);
+        }
+    }
+
+    public void delete(UUID uuid) {
+        try {
+            User user = getUser();
+
+            if (user.getCategories().containsKey(uuid)) {
+                user.getCategories().remove(uuid);
+                setUser(user);
+            }
+        } catch (UserNotFoundException unfe) {
+            log.error("Erro ao deletar categoria, usuário inexistente: {}", unfe);
         }
     }
 }
