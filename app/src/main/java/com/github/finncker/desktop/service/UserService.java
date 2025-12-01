@@ -2,8 +2,7 @@ package com.github.finncker.desktop.service;
 
 import com.github.finncker.desktop.model.entities.User;
 import com.github.finncker.desktop.model.exceptions.UserAlreadyExists;
-import com.github.finncker.desktop.model.exceptions.UserNotFoundEmailException;
-import com.github.finncker.desktop.model.exceptions.UserNotFoundIdException;
+import com.github.finncker.desktop.model.exceptions.UserNotFoundException;
 import com.github.finncker.desktop.model.repository.UserRepository;
 
 import lombok.extern.slf4j.Slf4j;
@@ -11,60 +10,37 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class UserService {
 
-    private UserRepository userRepo = new UserRepository();
+    private UserRepository userRepository = new UserRepository();
 
-    public User create(User user) throws UserAlreadyExists {
-        log.info("Criando usuário: {}", user.getEmail());
-        User existing = userRepo.readByEmail(user.getEmail());
+    public boolean userExists() {
+        return userRepository.userExists();
+    }
 
-        if (existing != null) {
-            log.warn("Usuário já existe: {}", user.getEmail());
+    public void create(String fullName, String email) throws UserAlreadyExists {
+        if (userRepository.userExists()) {
             throw new UserAlreadyExists();
         }
 
-        log.info("Usuário criado com sucesso: {}", user.getEmail());
-        return userRepo.create(user);
+        User user = User.builder().fullName(fullName).email(email).build();
+
+        userRepository.createUser(user);
+
+        log.info("Usuário {} criado com sucesso.", user.getEmail());
     }
 
-    public User read(String id) throws UserNotFoundIdException {
-        log.info("Buscando usuário: id = {}", id);
-        User u = userRepo.read(id);
+    public User read() throws UserNotFoundException {
+        log.info("Buscando usuário.");
 
-        if (u == null) {
-            log.error("Usuário não encontrado: id = {}", id);
-            throw new UserNotFoundIdException(id);
-        }
-
-        return u;
+        return userRepository.readUser();
     }
 
-    public User readByEmail(String email) throws UserNotFoundEmailException {
-        log.info("Buscando usuário email = {}", email);
-        User u = userRepo.readByEmail(email);
-
-        if (u == null) {
-            log.warn("Usuário não encontrado por email: {}", email);
-            throw new UserNotFoundEmailException(email);
-        }
-
-        return u;
+    public void update(String fullName, String email) throws UserNotFoundException {
+        userRepository.updateUser(fullName, email);
+        log.info("Usuário atualizado com sucesso.");
     }
 
-    public User update(User user) {
-        log.info("Atualizando usuário id = {}", user.getId());
-        return userRepo.update(user);
-    }
-
-    public boolean delete(String id) throws UserNotFoundIdException {
-        log.info("Tentando deletar usuário: id = {}", id);
-        boolean deleted = userRepo.delete(id);
-
-        if (!deleted) {
-            log.error("Erro ao deletar usuário: id = {}", id);
-            throw new UserNotFoundIdException(id);
-        }
-
-        log.info("Usuário deletado com sucesso: id = {}", id);
-        return true;
+    public void delete() {
+        userRepository.deleteUser();
+        log.info("Usuário deletado com sucesso.");
     }
 }
