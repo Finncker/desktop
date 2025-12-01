@@ -1,31 +1,43 @@
 package com.github.finncker.desktop.model.repository;
 
 import com.github.finncker.desktop.model.entities.User;
+import com.github.finncker.desktop.model.exceptions.UserNotFoundException;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class UserRepository extends AbstractRepository<User> {
-    
+public class UserRepository extends AbstractRepository {
     public UserRepository() {
-        super("users.dat");
+        super();
     }
 
-    @Override
-    protected String getId(User entity) {
-        return entity.getId();
+    public boolean userExists() {
+        try {
+            getUser();
+            return true;
+        } catch (UserNotFoundException unfe) {
+            return false;
+        }
     }
 
-    @Override
-    protected boolean matchId(User entity, String id) {
-        return entity.getId().equals(id);
+    public void createUser(User user) {
+        setUser(user);
     }
 
-    public User readByEmail(String email) {
-        log.debug("Buscando usuário pelo email: {}", email);
-        return readAll().stream()
-                        .filter(u -> u.getEmail().equalsIgnoreCase(email))
-                        .findFirst()
-                        .orElse(null);
+    public User readUser() throws UserNotFoundException {
+        return getUser();
+    }
+
+    public void updateUser(User user) throws UserNotFoundException {
+        User currentUser = getUser();
+
+        User newUser = User.builder().fullName(user.getFullName()).email(user.getEmail())
+                .accounts(currentUser.getAccounts()).categories(currentUser.getCategories()).build();
+
+        setUser(newUser);
+    }
+
+    public void deleteUser() {
+        setUser(null);
     }
 }
