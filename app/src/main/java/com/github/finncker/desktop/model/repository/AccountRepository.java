@@ -2,6 +2,9 @@ package com.github.finncker.desktop.model.repository;
 
 import com.github.finncker.desktop.model.entities.Account;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class AccountRepository extends AbstractRepository<Account> {
 
     public AccountRepository() {
@@ -19,6 +22,7 @@ public class AccountRepository extends AbstractRepository<Account> {
     }
 
     public Account readByName(String name) {
+        log.debug("Buscando conta pelo nome: {}", name);
         return readAll().stream()
                         .filter(a -> a.getName().equalsIgnoreCase(name))
                         .findFirst()

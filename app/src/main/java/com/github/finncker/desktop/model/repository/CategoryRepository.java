@@ -2,6 +2,9 @@ package com.github.finncker.desktop.model.repository;
 
 import com.github.finncker.desktop.model.entities.Category;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class CategoryRepository extends AbstractRepository<Category> {
     
     public CategoryRepository() {
@@ -19,6 +22,7 @@ public class CategoryRepository extends AbstractRepository<Category> {
     }
 
     public Category readByName(String name) {
+        log.debug("Buscando categoria pelo nome: {}", name);
         return readAll().stream()
                         .filter(c -> c.getName().equalsIgnoreCase(name))
                         .findFirst()

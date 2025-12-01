@@ -1,4 +1,4 @@
-package com.github.finncker.desktop.controllers;
+package com.github.finncker.desktop.controller;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
