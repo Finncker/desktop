@@ -1,9 +1,17 @@
 package com.github.finncker.desktop.controller;
 
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.Comparator;
+import java.util.List;
+
 import com.github.finncker.desktop.model.entities.Account;
 import com.github.finncker.desktop.model.entities.Transaction;
 import com.github.finncker.desktop.service.AccountService;
 import com.github.finncker.desktop.util.FormatUtil;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,13 +23,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
-
-import java.io.IOException;
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
-import java.util.Comparator;
-import java.util.List;
 
 @Slf4j
 public class AccountsViewController {

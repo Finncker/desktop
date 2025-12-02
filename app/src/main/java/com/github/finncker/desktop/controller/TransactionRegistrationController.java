@@ -1,29 +1,64 @@
 package com.github.finncker.desktop.controller;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
+import com.github.finncker.desktop.model.entities.Account;
+import com.github.finncker.desktop.model.entities.Category;
+import com.github.finncker.desktop.model.entities.Transaction;
+import com.github.finncker.desktop.service.AccountService;
+import com.github.finncker.desktop.service.CategoryService;
+import com.github.finncker.desktop.service.TransactionService;
+import com.github.finncker.desktop.util.FormatUtil;
+
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import lombok.extern.java.Log;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
 @Log
 public class TransactionRegistrationController {
 
-    @FXML private Button closeButton;
-    @FXML private ToggleButton incomeToggle;
-    @FXML private ToggleButton expenseToggle;
-    @FXML private TextField descriptionField;
-    @FXML private TextField valueField;
-    @FXML private DatePicker datePicker;
-    @FXML private ComboBox<String> categoryComboBox;
-    @FXML private ComboBox<String> accountComboBox;
-    @FXML private Button saveButton;
+    @FXML
+    private Button closeButton;
+    @FXML
+    private ToggleButton incomeToggle;
+    @FXML
+    private ToggleButton expenseToggle;
+    @FXML
+    private TextField descriptionField;
+    @FXML
+    private TextField valueField;
+    @FXML
+    private DatePicker datePicker;
+    @FXML
+    private ComboBox<String> categoryComboBox;
+    @FXML
+    private ComboBox<String> accountComboBox;
+    @FXML
+    private Button saveButton;
 
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+    private AccountService accountService = new AccountService();
+    private CategoryService categoryService = new CategoryService();
+    private TransactionService transactionService = new TransactionService();
+
+    private Map<String, UUID> accountMap = new HashMap<>();
+    private Map<String, UUID> categoryMap = new HashMap<>();
+    private TransactionsController parentController;
 
     @FXML
     public void initialize() {
@@ -64,22 +99,39 @@ public class TransactionRegistrationController {
     }
 
     private void populateComboBoxes() {
-        categoryComboBox.getItems().addAll("Alimentação", "Transporte", "Moradia", "Saúde", 
-                "Educação", "Lazer", "Salário", "Investimentos", "Outros");
-        accountComboBox.getItems().addAll("Conta Corrente", "Poupança", "Carteira", "Cartão de Crédito");
+        accountMap.clear();
+        categoryMap.clear();
+
+        // Carregar contas reais
+        accountComboBox.getItems().clear();
+        for (Account account : accountService.getAll()) {
+            String displayName = account.getName() != null ? account.getName() : "Conta sem nome";
+            accountComboBox.getItems().add(displayName);
+            accountMap.put(displayName, account.getUuid());
+        }
+
+        // Carregar categorias reais
+        categoryComboBox.getItems().clear();
+        for (Category category : categoryService.getAll()) {
+            String displayName = category.getName() != null ? category.getName() : "Categoria sem nome";
+            categoryComboBox.getItems().add(displayName);
+            categoryMap.put(displayName, category.getUuid());
+        }
     }
 
     private void setupValueValidation() {
         valueField.setPromptText("0,00");
         valueField.textProperty().addListener((obs, oldVal, newVal) -> {
-            if (newVal == null || newVal.isEmpty()) return;
-            
+            if (newVal == null || newVal.isEmpty())
+                return;
+
             String filtered = newVal.replace(".", ",");
             if (!filtered.matches("\\d*(,\\d{0,2})?") || filtered.chars().filter(ch -> ch == ',').count() > 1) {
                 valueField.setText(oldVal);
                 return;
             }
-            if (!filtered.equals(newVal)) valueField.setText(filtered);
+            if (!filtered.equals(newVal))
+                valueField.setText(filtered);
         });
     }
 
@@ -90,15 +142,52 @@ public class TransactionRegistrationController {
 
     @FXML
     private void handleSave() {
-        if (!validateFields()) return;
+        if (!validateFields())
+            return;
 
-        String type = incomeToggle.isSelected() ? "Receita" : "Despesa";
-        log.info(String.format("Salvando: %s, %s, %s, %s, %s, %s", 
-                type, descriptionField.getText().trim(), valueField.getText().trim(),
-                datePicker.getValue(), categoryComboBox.getValue(), accountComboBox.getValue()));
+        try {
+            UUID accountUUID = accountMap.get(accountComboBox.getValue());
+            UUID categoryUUID = categoryMap.get(categoryComboBox.getValue());
 
-        showAlert(Alert.AlertType.INFORMATION, "Sucesso", "Transação salva com sucesso!");
-        handleClose();
+            if (accountUUID == null) {
+                showAlert(Alert.AlertType.ERROR, "Erro", "Conta selecionada inválida.");
+                return;
+            }
+
+            if (categoryUUID == null) {
+                showAlert(Alert.AlertType.ERROR, "Erro", "Categoria selecionada inválida.");
+                return;
+            }
+
+            BigDecimal amount = FormatUtil.parseCurrency(valueField.getText().trim());
+            if (expenseToggle.isSelected()) {
+                amount = amount.negate();
+            }
+
+            Transaction transaction = Transaction.builder()
+                    .description(descriptionField.getText().trim())
+                    .amount(amount)
+                    .date(datePicker.getValue())
+                    .categoryUUID(categoryUUID)
+                    .build();
+
+            transactionService.create(accountUUID, transaction);
+
+            log.info(String.format("Transação salva: %s, %s, %s",
+                    descriptionField.getText().trim(), FormatUtil.formatCurrency(amount.abs()),
+                    datePicker.getValue()));
+
+            showAlert(Alert.AlertType.INFORMATION, "Sucesso", "Transação salva com sucesso!");
+
+            if (parentController != null) {
+                parentController.refreshTransactions();
+            }
+
+            handleClose();
+        } catch (Exception e) {
+            log.severe("Erro ao salvar transação: " + e.getMessage());
+            showAlert(Alert.AlertType.ERROR, "Erro", "Erro ao salvar transação: " + e.getMessage());
+        }
     }
 
     private boolean validateFields() {
@@ -113,7 +202,8 @@ public class TransactionRegistrationController {
         else {
             try {
                 double value = Double.parseDouble(valueField.getText().trim().replace(",", "."));
-                if (value <= 0) errors.append("• O valor deve ser maior que zero\n");
+                if (value <= 0)
+                    errors.append("• O valor deve ser maior que zero\n");
             } catch (NumberFormatException e) {
                 errors.append("• Valor inválido\n");
             }
@@ -126,7 +216,7 @@ public class TransactionRegistrationController {
             errors.append("• Selecione a conta\n");
 
         if (errors.length() > 0) {
-            showAlert(Alert.AlertType.WARNING, "Campos Obrigatórios", 
+            showAlert(Alert.AlertType.WARNING, "Campos Obrigatórios",
                     "Por favor, preencha todos os campos obrigatórios:\n" + errors);
             return false;
         }
@@ -148,5 +238,9 @@ public class TransactionRegistrationController {
         datePicker.setValue(LocalDate.now());
         categoryComboBox.getSelectionModel().clearSelection();
         accountComboBox.getSelectionModel().clearSelection();
+    }
+
+    public void setParentController(TransactionsController parentController) {
+        this.parentController = parentController;
     }
 }
