@@ -28,11 +28,11 @@ public abstract class AbstractRepository {
                     ObjectInputStream ois = new ObjectInputStream(fis);) {
                 dataState = (User) ois.readObject();
             } catch (FileNotFoundException fnfe) {
-                log.warn("File `{}` not found.", FILENAME);
+                log.warn("Arquivo {} não encontrado.", FILENAME);
             } catch (IOException ioe) {
-                log.warn("IO Exception `{}`", ioe);
+                log.warn("Erro de IO: {}.", ioe);
             } catch (ClassNotFoundException cnfe) {
-                log.warn("Class User not fount in `{}`", FILENAME);
+                log.warn("Classe User não encontrada em {}.", FILENAME);
             }
         }
     }
@@ -43,9 +43,9 @@ public abstract class AbstractRepository {
                     ObjectOutputStream oos = new ObjectOutputStream(fos);) {
                 oos.writeObject(dataState);
             } catch (FileNotFoundException fnfe) {
-                log.warn("File `{}` not found.", FILENAME);
+                log.warn("Arquivo {} não encontrado.", FILENAME);
             } catch (IOException ioe) {
-                log.warn("IO Exception `{}`.", ioe);
+                log.warn("Erro de IO: {}.", ioe);
             }
         }
     }

@@ -1,5 +1,7 @@
 package com.github.finncker.desktop.model.repository;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import com.github.finncker.desktop.model.entities.Account;
@@ -95,5 +97,21 @@ public class TransactionRepository extends AbstractRepository {
         } catch (UserNotFoundException unfe) {
             log.error("Erro ao deletar transação, usuário inexistente: {}", unfe);
         }
+    }
+
+    public List<Transaction> getAll() {
+        List<Transaction> allTransactions = new ArrayList<>();
+
+        try {
+            User user = getUser();
+
+            for (Account account : user.getAccounts()) {
+                allTransactions.addAll(account.getTransactions());
+            }
+        } catch (UserNotFoundException unfe) {
+            log.error("Erro ao listar transações, usuário inexistente: {}", unfe);
+        }
+
+        return allTransactions;
     }
 }
