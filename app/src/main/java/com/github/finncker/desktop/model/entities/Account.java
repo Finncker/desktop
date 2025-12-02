@@ -23,6 +23,10 @@ public class Account implements Serializable {
     private UUID uuid = UUID.randomUUID();
 
     private String name;
+    private String accountType;
+    private String institution;
+    private String accountNumber;
+    private String color;
     private BigDecimal initialBalance;
 
     @Builder.Default

@@ -19,9 +19,13 @@ import lombok.ToString;
 @ToString
 public class Category implements Serializable {
 
-    private UUID uuid;
+    @Builder.Default
+    private UUID uuid = UUID.randomUUID();
+
     private String name;
     private CategoryType type;
+    private String icon;
+    private String color;
 
     @Builder.Default
     private BigDecimal budget = null;
