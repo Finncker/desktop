@@ -1,5 +1,7 @@
 package com.github.finncker.desktop;
 
+import com.github.finncker.desktop.service.UserService;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,17 +10,21 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+    private UserService userService = new UserService();
+
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(
+        Parent root;
 
-                getClass().getResource("/fxml/Transactions.fxml"));
+        if (userService.userExists()) {
+            root = FXMLLoader.load(getClass().getResource("/fxml/Dashboard.fxml"));
+        } else {
+            root = FXMLLoader.load(getClass().getResource("/fxml/UserRegistrationView.fxml"));
+        }
 
         Scene scene = new Scene(root);
-
-        primaryStage.setTitle("Finncker - Transações");
         primaryStage.setScene(scene);
-        primaryStage.setResizable(true);
+        primaryStage.setTitle("Finncker");
         primaryStage.show();
     }
 
