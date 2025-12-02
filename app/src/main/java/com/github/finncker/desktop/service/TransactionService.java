@@ -38,4 +38,8 @@ public class TransactionService {
 
     transactionRepository.delete(accountUUID, uuid);
   }
+
+  public java.util.List<Transaction> getAll() {
+    return transactionRepository.getAll();
+  }
 }

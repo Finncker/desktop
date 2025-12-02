@@ -39,4 +39,8 @@ public class AccountService {
         accountRepository.delete(uuid);
         log.info("Conta deletada com sucesso: id = {}", uuid);
     }
+
+    public java.util.List<Account> getAll() {
+        return accountRepository.getAll();
+    }
 }
