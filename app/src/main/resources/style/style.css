@@ -8,3 +8,583 @@
   font-weight: bold;
   src: url("../fonts/Inter-Bold.ttf");
 }
+
+/* ============================================================
+   ROOT & GLOBAL STYLES
+   ============================================================ */
+
+.root {
+  -fx-font-family: "Inter", "Segoe UI", "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+/* ============================================================
+   COLORS & BACKGROUNDS
+   ============================================================ */
+
+.bg-light {
+  -fx-background-color: #F9FAFB;
+}
+
+.bg-white {
+  -fx-background-color: #FFFFFF;
+}
+
+.bg-card {
+  -fx-background-color: #FFFEFE;
+}
+
+.bg-light-gray {
+  -fx-background-color: #f8f9fa;
+}
+
+.bg-neutral {
+  -fx-background-color: #E0E0E0;
+}
+
+/* ============================================================
+   TYPOGRAPHY
+   ============================================================ */
+
+.h1 {
+  -fx-font-family: "Inter";
+  -fx-font-size: 28px;
+  -fx-font-weight: bold;
+  -fx-text-fill: #1a1a1a;
+}
+
+.h2 {
+  -fx-font-family: "Inter";
+  -fx-font-size: 24px;
+  -fx-font-weight: bold;
+  -fx-text-fill: #1a1a1a;
+}
+
+.h3 {
+  -fx-font-family: "Inter";
+  -fx-font-size: 20px;
+  -fx-font-weight: bold;
+  -fx-text-fill: #2c3e50;
+}
+
+.subtitle {
+  -fx-font-family: "Inter";
+  -fx-font-size: 16px;
+  -fx-text-fill: #666666;
+}
+
+.body-text {
+  -fx-font-family: "Inter";
+  -fx-font-size: 14px;
+  -fx-text-fill: #4a5568;
+}
+
+.label-text {
+  -fx-font-family: "Inter";
+  -fx-font-size: 14px;
+  -fx-font-weight: bold;
+  -fx-text-fill: #2c3e50;
+}
+
+.small-text {
+  -fx-font-family: "Inter";
+  -fx-font-size: 12px;
+  -fx-text-fill: #7f8c8d;
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+
+.btn-primary {
+  -fx-background-color: #000000;
+  -fx-text-fill: #ffffff;
+  -fx-background-radius: 10;
+  -fx-font-family: "Inter";
+  -fx-font-size: 16px;
+  -fx-font-weight: bold;
+  -fx-padding: 8 8 8 8;
+  -fx-cursor: hand;
+  -fx-border-color: transparent;
+}
+
+.btn-primary:hover {
+  -fx-background-color: #1a1a1a;
+}
+
+.btn-primary:pressed {
+  -fx-background-color: #000000;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 8, 0, 0, 2);
+}
+
+.btn-secondary {
+  -fx-background-color: #ffffff;
+  -fx-text-fill: #4b5563;
+  -fx-background-radius: 8;
+  -fx-border-color: #e5e7eb;
+  -fx-border-radius: 8;
+  -fx-border-width: 1;
+  -fx-font-size: 14;
+  -fx-font-weight: 600;
+  -fx-padding: 12 24 12 24;
+  -fx-cursor: hand;
+  -fx-font-family: "Inter";
+}
+
+.btn-secondary:hover {
+  -fx-background-color: #f9fafb;
+  -fx-border-color: #d1d5db;
+}
+
+.btn-secondary:pressed {
+  -fx-background-color: #f3f4f6;
+}
+
+/* ============================================================
+   INPUT FIELDS
+   ============================================================ */
+
+.input-field,
+.combo-box,
+.date-picker,
+.text-area {
+  -fx-background-color: #EEEEEE;
+  -fx-background-radius: 10;
+  -fx-border-color: transparent;
+  -fx-border-radius: 10;
+  -fx-border-width: 1;
+  -fx-padding: 8 8 8 8;
+  -fx-font-size: 16;
+  -fx-text-fill: #a0a0a0;
+  -fx-prompt-text-fill: #c0c0c0;
+  -fx-font-family: "Inter";
+}
+
+.input-field:focused,
+.combo-box:focused,
+.date-picker:focused,
+.text-area:focused {
+  -fx-background-color: #ffffff;
+  -fx-border-color: #e0e0e0;
+  -fx-border-width: 1;
+}
+
+.input-field:hover,
+.combo-box:hover,
+.date-picker:hover,
+.text-area:hover {
+  -fx-background-color: #f0f0f0;
+}
+
+.custom-text-field,
+.custom-combo-box,
+.custom-date-picker,
+.custom-text-area {
+  -fx-background-color: #f8f9fa;
+  -fx-background-radius: 8;
+  -fx-border-color: transparent;
+  -fx-border-radius: 8;
+  -fx-border-width: 1;
+  -fx-padding: 12 16 12 16;
+  -fx-font-size: 14;
+  -fx-text-fill: #a0a0a0;
+  -fx-prompt-text-fill: #c0c0c0;
+  -fx-font-family: "Inter";
+}
+
+.custom-text-field {
+  -fx-pref-height: 40;
+  -fx-max-height: 40;
+  -fx-min-height: 40;
+}
+
+.custom-text-field:focused,
+.custom-combo-box:focused,
+.custom-date-picker:focused,
+.custom-text-area:focused {
+  -fx-background-color: #ffffff;
+  -fx-border-color: #e0e0e0;
+  -fx-border-width: 1;
+}
+
+.custom-text-field:hover,
+.custom-combo-box:hover,
+.custom-date-picker:hover,
+.custom-text-area:hover {
+  -fx-background-color: #f0f0f0;
+}
+
+/* ============================================================
+   CARDS & CONTAINERS
+   ============================================================ */
+
+.card {
+  -fx-background-color: #FFFEFE;
+  -fx-background-radius: 10;
+  -fx-border-color: #000000;
+  -fx-border-radius: 10;
+  -fx-border-width: 0.2;
+}
+
+.card-shadow {
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 0, 10);
+}
+
+.card-light {
+  -fx-background-color: #FFFEFE;
+  -fx-background-radius: 8;
+  -fx-border-radius: 8;
+  -fx-border-width: 0.2;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0, 0, 2);
+}
+
+.card-minimal {
+  -fx-background-color: #f8f9fa;
+  -fx-background-radius: 8;
+  -fx-border-color: transparent;
+}
+
+/* ============================================================
+   MODALS
+   ============================================================ */
+
+.modal-container {
+  -fx-background-color: #ffffff;
+  -fx-background-radius: 16;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 30, 0, 0, 10);
+  -fx-font-family: "Inter";
+}
+
+.modal-title {
+  -fx-font-size: 28;
+  -fx-font-weight: 700;
+  -fx-fill: #1a1a1a;
+  -fx-font-family: "Inter";
+}
+
+.modal-subtitle {
+  -fx-font-size: 14;
+  -fx-fill: #999999;
+  -fx-line-spacing: 1.5;
+  -fx-font-family: "Inter";
+}
+
+.field-label {
+  -fx-font-size: 14;
+  -fx-font-weight: 700;
+  -fx-text-fill: #2c3e50;
+  -fx-font-family: "Inter";
+}
+
+.close-button {
+  -fx-background-color: transparent;
+  -fx-text-fill: #cccccc;
+  -fx-font-size: 24;
+  -fx-cursor: hand;
+  -fx-padding: 5 10 5 10;
+  -fx-background-radius: 4;
+  -fx-font-family: "Inter";
+}
+
+.close-button:hover {
+  -fx-background-color: #f5f5f5;
+  -fx-text-fill: #666666;
+}
+
+.save-button {
+  -fx-background-color: #1e3a8a;
+  -fx-text-fill: #ffffff;
+  -fx-background-radius: 8;
+  -fx-font-size: 15;
+  -fx-font-weight: 700;
+  -fx-padding: 14 28 14 28;
+  -fx-cursor: hand;
+  -fx-border-color: transparent;
+  -fx-font-family: "Inter";
+}
+
+.save-button:hover {
+  -fx-background-color: #1e40af;
+}
+
+.save-button:pressed {
+  -fx-background-color: #1e3a8a;
+  -fx-effect: dropshadow(gaussian, rgba(30, 58, 138, 0.3), 8, 0, 0, 2);
+}
+
+.cancel-button {
+  -fx-background-color: transparent;
+  -fx-background-radius: 8;
+  -fx-border-color: #e0e0e0;
+  -fx-border-radius: 8;
+  -fx-border-width: 1;
+  -fx-text-fill: #666666;
+  -fx-font-size: 14;
+  -fx-font-weight: 500;
+  -fx-padding: 10 24 10 24;
+  -fx-cursor: hand;
+  -fx-font-family: "Inter";
+}
+
+.cancel-button:hover {
+  -fx-background-color: #f5f5f5;
+  -fx-border-color: #cccccc;
+  -fx-text-fill: #333333;
+}
+
+.cancel-button:pressed {
+  -fx-background-color: #eeeeee;
+}
+
+/* ============================================================
+   CUSTOM COMBOBOX & DATEPICKER
+   ============================================================ */
+
+.custom-text-field,
+.custom-combo-box,
+.custom-date-picker,
+.custom-text-area {
+  -fx-background-color: #f8f9fa;
+  -fx-background-radius: 8;
+  -fx-border-color: transparent;
+  -fx-border-radius: 8;
+  -fx-border-width: 1;
+  -fx-padding: 12 16 12 16;
+  -fx-font-size: 14;
+  -fx-text-fill: #a0a0a0;
+  -fx-prompt-text-fill: #c0c0c0;
+  -fx-font-family: "Inter";
+}
+
+.custom-text-field {
+  -fx-pref-height: 40;
+  -fx-max-height: 40;
+  -fx-min-height: 40;
+}
+
+.custom-text-field:focused,
+.custom-combo-box:focused,
+.custom-date-picker:focused,
+.custom-text-area:focused {
+  -fx-background-color: #ffffff;
+  -fx-border-color: #e0e0e0;
+  -fx-border-width: 1;
+}
+
+.custom-text-field:hover,
+.custom-combo-box:hover,
+.custom-date-picker:hover,
+.custom-text-area:hover {
+  -fx-background-color: #f0f0f0;
+}
+
+.custom-combo-box {
+  -fx-padding: 0;
+}
+
+.custom-combo-box .list-cell {
+  -fx-background-color: transparent;
+  -fx-text-fill: #a0a0a0;
+  -fx-padding: 12 16 12 16;
+  -fx-font-size: 14;
+  -fx-font-family: "Inter";
+}
+
+.custom-combo-box .arrow-button {
+  -fx-background-color: transparent;
+  -fx-padding: 0 12 0 0;
+}
+
+.custom-combo-box .arrow {
+  -fx-background-color: #999999;
+  -fx-padding: 4;
+}
+
+.custom-date-picker {
+  -fx-pref-height: 40;
+  -fx-max-height: 40;
+  -fx-min-height: 40;
+}
+
+.custom-date-picker .text-field {
+  -fx-background-color: transparent;
+  -fx-background-radius: 8;
+  -fx-padding: 12 16 12 16;
+  -fx-font-size: 14;
+  -fx-text-fill: #a0a0a0;
+  -fx-prompt-text-fill: #c0c0c0;
+  -fx-font-family: "Inter";
+}
+
+.custom-date-picker .arrow-button {
+  -fx-background-color: transparent;
+  -fx-padding: 0 12 0 0;
+}
+
+.custom-date-picker .arrow {
+  -fx-background-color: #666666;
+}
+
+.custom-text-area .content {
+  -fx-background-color: transparent;
+}
+
+.custom-text-area .scroll-pane {
+  -fx-background-color: transparent;
+}
+
+.custom-text-area .scroll-pane .viewport {
+  -fx-background-color: transparent;
+}
+
+/* ============================================================
+   TOGGLE BUTTONS
+   ============================================================ */
+
+.toggle-group-container {
+  -fx-background-color: #f0f0f0;
+  -fx-background-radius: 8;
+  -fx-padding: 4;
+}
+
+.toggle-left,
+.toggle-right {
+  -fx-background-color: transparent;
+  -fx-text-fill: #666666;
+  -fx-font-size: 14;
+  -fx-font-weight: 500;
+  -fx-padding: 10 20 10 20;
+  -fx-cursor: hand;
+  -fx-border-color: transparent;
+  -fx-font-family: "Inter";
+}
+
+.toggle-left {
+  -fx-background-radius: 6 0 0 6;
+}
+
+.toggle-right {
+  -fx-background-radius: 0 6 6 0;
+}
+
+.toggle-left:selected,
+.toggle-right:selected {
+  -fx-background-color: #ffffff;
+  -fx-background-radius: 6;
+  -fx-text-fill: #2c5282;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.08), 4, 0, 0, 2);
+}
+
+.toggle-left:hover,
+.toggle-right:hover {
+  -fx-text-fill: #2c3e50;
+}
+
+.toggle-left:hover:selected,
+.toggle-right:hover:selected {
+  -fx-text-fill: #2c5282;
+}
+
+/* ============================================================
+   PAGE HEADER
+   ============================================================ */
+
+.page-title {
+  -fx-font-size: 32;
+  -fx-font-weight: 700;
+  -fx-fill: #1a1a1a;
+  -fx-font-family: "Inter";
+}
+
+.page-subtitle {
+  -fx-font-size: 15;
+  -fx-fill: #6b7280;
+  -fx-font-family: "Inter";
+}
+
+/* ============================================================
+   SCROLLBARS
+   ============================================================ */
+
+.scroll-bar:vertical {
+  -fx-background-color: transparent;
+  -fx-padding: 0;
+}
+
+.scroll-bar:vertical .track {
+  -fx-background-color: transparent;
+}
+
+.scroll-bar:vertical .thumb {
+  -fx-background-color: #cccccc;
+  -fx-background-radius: 10;
+}
+
+.scroll-bar:vertical .thumb:hover {
+  -fx-background-color: #999999;
+}
+
+.scroll-bar:vertical .increment-button,
+.scroll-bar:vertical .decrement-button {
+  -fx-background-color: transparent;
+  -fx-padding: 0;
+}
+
+/* ============================================================
+   SPACING UTILITIES
+   ============================================================ */
+
+.p-small {
+  -fx-padding: 5;
+}
+
+.p-medium {
+  -fx-padding: 10;
+}
+
+.p-large {
+  -fx-padding: 15;
+}
+
+.p-xl {
+  -fx-padding: 20;
+}
+
+.m-small {
+  -fx-margin: 5;
+}
+
+.m-medium {
+  -fx-margin: 10;
+}
+
+.m-large {
+  -fx-margin: 15;
+}
+
+.m-xl {
+  -fx-margin: 20;
+}
+
+/* ============================================================
+   NAVIGATION BUTTONS
+   ============================================================ */
+
+.nav-button {
+  -fx-background-color: transparent;
+  -fx-background-radius: 10;
+  -fx-font-family: "Inter";
+  -fx-font-size: 16px;
+  -fx-font-weight: bold;
+  -fx-text-fill: #1a1a1a;
+  -fx-padding: 10 10 10 10;
+  -fx-cursor: hand;
+  -fx-alignment: CENTER_LEFT;
+}
+
+.nav-button:hover {
+  -fx-background-color: #f0f0f0;
+}
+
+.nav-button:pressed {
+  -fx-background-color: #e0e0e0;
+}
