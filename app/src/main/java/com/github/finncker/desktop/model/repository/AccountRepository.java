@@ -1,5 +1,7 @@
 package com.github.finncker.desktop.model.repository;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import com.github.finncker.desktop.model.entities.Account;
@@ -73,5 +75,15 @@ public class AccountRepository extends AbstractRepository {
         } catch (UserNotFoundException unfe) {
             log.error("Erro ao deletar conta, usuário inexistente: {}", unfe);
         }
+    }
+
+    public List<Account> getAll() {
+        try {
+            return getUser().getAccounts();
+        } catch (UserNotFoundException unfe) {
+            log.error("Erro ao listar contas, usuário inexistente: {}", unfe);
+        }
+
+        return new ArrayList<>();
     }
 }

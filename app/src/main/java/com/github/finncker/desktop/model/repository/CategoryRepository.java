@@ -1,5 +1,7 @@
 package com.github.finncker.desktop.model.repository;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import com.github.finncker.desktop.model.entities.Category;
@@ -69,5 +71,15 @@ public class CategoryRepository extends AbstractRepository {
         } catch (UserNotFoundException unfe) {
             log.error("Erro ao deletar categoria, usuário inexistente: {}", unfe);
         }
+    }
+
+    public List<Category> getAll() {
+        try {
+            return new ArrayList<>(getUser().getCategories().values());
+        } catch (UserNotFoundException unfe) {
+            log.error("Erro ao listar categorias, usuário inexistente: {}", unfe);
+        }
+
+        return new ArrayList<>();
     }
 }
