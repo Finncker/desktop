@@ -15,145 +15,90 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.finncker.desktop.controllers.DashboardController">
-   
-   <left>
-      <VBox prefHeight="600.0" prefWidth="200.0" style="-fx-background-color: #2c3e50;" BorderPane.alignment="CENTER">
-         <children>
-            <Label text="Finncker" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font>
-               <layoutX>20.0</layoutX>
-            </Label>
-            </children>
-      </VBox>
-   </left>
-   
-   <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-padding: 20px;" BorderPane.alignment="CENTER">
-         <children>
-            <ScrollPane fitToWidth="true" prefHeight="200.0" prefWidth="200.0">
-               <content>
-                  <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0">
-                     <padding>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                     </padding>
-                     <children>
-                        <Label text="Dashboard Financeiro">
-                           <font>
-                              <Font name="System Bold" size="24.0" />
-                           </font>
-                        </Label>
-                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0">
-                           <children>
-                              <VBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: white; -fx-background-radius: 15;">
-                                 <padding>
-                                    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                                 </padding>
-                                 <children>
-                                    <Label text="Saldo Total" textFill="#7f8c8d" />
-                                    <Label fx:id="labelSaldo" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="230.0" text="R$ 12.450,90" textFill="#2c3e50">
-                                       <font>
-                                          <Font name="System Bold" size="16.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                                 <effect>
-                                    <DropShadow>
-                                       <color>
-                                          <Color opacity="0.40458014607429504" />
-                                       </color>
-                                    </DropShadow>
-                                 </effect>
-                              </VBox>
-                              <VBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: white; -fx-background-radius: 15;">
-                                 <padding>
-                                    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                                 </padding>
-                                 <children>
-                                    <Label text="Receitas" textFill="#7f8c8d" />
-                                    <Label fx:id="labelReceitas" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="230.0" text="R$ 12.450,90" textFill="#2c3e50">
-                                       <font>
-                                          <Font name="System Bold" size="16.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                                 <effect>
-                                    <DropShadow>
-                                       <color>
-                                          <Color opacity="0.40458014607429504" />
-                                       </color>
-                                    </DropShadow>
-                                 </effect>
-                              </VBox>
-                              <VBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: white; -fx-background-radius: 15;">
-                                 <padding>
-                                    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                                 </padding>
-                                 <children>
-                                    <Label text="Despesas" textFill="#7f8c8d" />
-                                    <Label fx:id="labelDespesas" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="230.0" text="R$ 12.450,90" textFill="#2c3e50">
-                                       <font>
-                                          <Font name="System Bold" size="16.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                                 <effect>
-                                    <DropShadow>
-                                       <color>
-                                          <Color opacity="0.40458014607429504" />
-                                       </color>
-                                    </DropShadow>
-                                 </effect>
-                              </VBox>
-                              <VBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: white; -fx-background-radius: 15;">
-                                 <padding>
-                                    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                                 </padding>
-                                 <children>
-                                    <Label text="Economia do mês" textFill="#7f8c8d" />
-                                    <Label fx:id="labelEconomia" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="230.0" text="R$ 12.450,90" textFill="#2c3e50">
-                                       <font>
-                                          <Font name="System Bold" size="16.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                                 <effect>
-                                    <DropShadow>
-                                       <color>
-                                          <Color opacity="0.40458014607429504" />
-                                       </color>
-                                    </DropShadow>
-                                 </effect>
-                              </VBox>
-                           </children>
-                        </HBox>
-                     </children>
-                  </VBox>
-               </content>
-            </ScrollPane>
-            <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
-               <children>
-                  <BarChart fx:id="graficoBarras">
-                    <xAxis>
-                      <CategoryAxis side="BOTTOM" />
-                    </xAxis>
-                    <yAxis>
-                      <NumberAxis side="LEFT" />
-                    </yAxis>
-                  </BarChart>
-                  <PieChart fx:id="graficoPizza" />
-               </children>
-            </HBox>
-            <VBox prefHeight="200.0" prefWidth="100.0">
-               <children>
-                  <Label text="Transações Recentes" />
-                  <ListView fx:id="listaTransacoes" prefHeight="200.0" prefWidth="200.0" />
-               </children>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/22.0.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.finncker.desktop.controller.DashboardController">
+  <left>
+    <fx:include source="SidePanelView.fxml"/>
+  </left>
+
+  <center>
+    <VBox prefHeight="200.0" prefWidth="100.0" styleClass="bg-light" style="-fx-padding: 20px;" BorderPane.alignment="CENTER">
+      <children>
+        <ScrollPane fitToWidth="true" prefHeight="200.0" prefWidth="200.0">
+          <content>
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0">
+              <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+              </padding>
+              <children>
+                <Label text="Dashboard Financeiro">
+                  <font>
+                    <Font name="Inter Bold" size="24.0"/>
+                  </font>
+                </Label>
+                <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+                  <children>
+                    <VBox prefHeight="100.0" prefWidth="200.0" styleClass="card">
+                      <padding>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+                      </padding>
+                      <children>
+                        <Label styleClass="body-text" text="Saldo Total"/>
+                        <Label fx:id="labelSaldo" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="230.0" styleClass="h3" text="R$ 12.450,90"/>
+                      </children>
+                    </VBox>
+                    <VBox prefHeight="100.0" prefWidth="200.0" styleClass="card">
+                      <padding>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+                      </padding>
+                      <children>
+                        <Label styleClass="body-text" text="Receitas"/>
+                        <Label fx:id="labelReceitas" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="230.0" styleClass="h3" text="R$ 12.450,90"/>
+                      </children>
+                    </VBox>
+                    <VBox prefHeight="100.0" prefWidth="200.0" styleClass="card">
+                      <padding>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+                      </padding>
+                      <children>
+                        <Label styleClass="body-text" text="Despesas"/>
+                        <Label fx:id="labelDespesas" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="230.0" styleClass="h3" text="R$ 12.450,90"/>
+                      </children>
+                    </VBox>
+                    <VBox prefHeight="100.0" prefWidth="200.0" styleClass="card">
+                      <padding>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+                      </padding>
+                      <children>
+                        <Label styleClass="body-text" text="Economia do mês"/>
+                        <Label fx:id="labelEconomia" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="230.0" styleClass="h3" text="R$ 12.450,90"/>
+                      </children>
+                    </VBox>
+                  </children>
+                </HBox>
+              </children>
             </VBox>
-         </children>
-      </VBox>
-   </center>
-   
+          </content>
+        </ScrollPane>
+        <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+          <children>
+            <BarChart fx:id="graficoBarras">
+              <xAxis>
+                <CategoryAxis side="BOTTOM"/>
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT"/>
+              </yAxis>
+            </BarChart>
+            <PieChart fx:id="graficoPizza"/>
+          </children>
+        </HBox>
+        <VBox prefHeight="200.0" prefWidth="100.0">
+          <children>
+            <Label text="Transações Recentes"/>
+            <ListView fx:id="listaTransacoes" prefHeight="200.0" prefWidth="200.0"/>
+          </children>
+        </VBox>
+      </children>
+    </VBox>
+  </center>
 </BorderPane>
