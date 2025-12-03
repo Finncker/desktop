@@ -1,7 +1,18 @@
 package com.github.finncker.desktop.controller;
 
+import java.math.BigDecimal;
+import java.util.UUID;
+
+import com.github.finncker.desktop.model.entities.Category;
+import com.github.finncker.desktop.model.enums.CategoryType;
+import com.github.finncker.desktop.service.CategoryService;
+import com.github.finncker.desktop.util.FormatUtil;
+
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import lombok.extern.java.Log;
 
@@ -24,6 +35,9 @@ public class CategoryRegistrationController {
     private Button cancelButton;
     @FXML
     private Button saveButton;
+
+    private CategoryService categoryService = new CategoryService();
+    private CategoriesController parentController;
 
     @FXML
     public void initialize() {
@@ -99,15 +113,48 @@ public class CategoryRegistrationController {
         if (!validateFields())
             return;
 
-        log.info(String.format("Salvando categoria: %s, %s, %s, %s, %s",
-                typeComboBox.getValue(),
-                categoryNameField.getText().trim(),
-                iconComboBox.getValue(),
-                colorComboBox.getValue(),
-                monthlyBudgetField.getText().trim()));
+        try {
+            CategoryType categoryType = "Receita".equals(typeComboBox.getValue())
+                    ? CategoryType.INCOME
+                    : CategoryType.EXPENSE;
 
-        showAlert(Alert.AlertType.INFORMATION, "Sucesso", "Categoria salva com sucesso!");
-        handleClose();
+            BigDecimal budget = null;
+            if (!monthlyBudgetField.getText().trim().isEmpty()) {
+                budget = FormatUtil.parseCurrency(monthlyBudgetField.getText().trim());
+            }
+
+            // Extrair emoji/ícone do texto (ex: "🛒 Compras" -> "🛒")
+            String selectedIcon = iconComboBox.getValue();
+            String icon = selectedIcon != null && selectedIcon.length() > 0
+                    ? selectedIcon.split(" ")[0]
+                    : "📌";
+
+            Category category = Category.builder()
+                    .uuid(UUID.randomUUID())
+                    .name(categoryNameField.getText().trim())
+                    .type(categoryType)
+                    .icon(icon)
+                    .color(colorComboBox.getValue())
+                    .budget(budget)
+                    .build();
+
+            categoryService.create(category);
+
+            log.info(String.format("Categoria salva: %s, %s, %s, %s",
+                    category.getName(), categoryType, category.getIcon(),
+                    budget != null ? FormatUtil.formatCurrency(budget) : "Sem orçamento"));
+
+            showAlert(Alert.AlertType.INFORMATION, "Sucesso", "Categoria salva com sucesso!");
+
+            if (parentController != null) {
+                parentController.refresh();
+            }
+
+            handleClose();
+        } catch (Exception e) {
+            log.severe("Erro ao salvar categoria: " + e.getMessage());
+            showAlert(Alert.AlertType.ERROR, "Erro", "Erro ao salvar categoria: " + e.getMessage());
+        }
     }
 
     private boolean validateFields() {
@@ -151,5 +198,9 @@ public class CategoryRegistrationController {
         iconComboBox.setValue("🛒 Compras");
         colorComboBox.setValue("Azul");
         monthlyBudgetField.clear();
+    }
+
+    public void setParentController(CategoriesController parentController) {
+        this.parentController = parentController;
     }
 }

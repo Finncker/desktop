@@ -1,5 +1,7 @@
 package com.github.finncker.desktop;
 
+import com.github.finncker.desktop.service.UserService;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,19 +13,21 @@ import java.util.Objects;
 
 public class Main extends Application {
 
+    private UserService userService = new UserService();
+
     @Override
     public void start(Stage primaryStage) throws Exception {
-        URL fxmlUrl = Objects.requireNonNull(
-                getClass().getResource("/fxml/Transactions.fxml"),
-                "FXML file not found: /fxml/Transactions.fxml"
-        );
-        Parent root = FXMLLoader.load(fxmlUrl);
+        Parent root;
+
+        if (userService.userExists()) {
+            root = FXMLLoader.load(getClass().getResource("/fxml/Dashboard.fxml"));
+        } else {
+            root = FXMLLoader.load(getClass().getResource("/fxml/UserRegistrationView.fxml"));
+        }
 
         Scene scene = new Scene(root);
-
-        primaryStage.setTitle("Finncker - Transações");
         primaryStage.setScene(scene);
-        primaryStage.setResizable(true);
+        primaryStage.setTitle("Finncker");
         primaryStage.show();
     }
 

@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 
-<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #F9FAFB;" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/22.0.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.finncker.desktop.controller.UserRegistrationController">
+<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" styleClass="bg-light" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/22.0.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.finncker.desktop.controller.UserRegistrationController">
   <center>
     <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="400.0" spacing="10.0">
       <children>
@@ -20,22 +20,22 @@
             <Image url="@../images/finncker-logo.png"/>
           </image>
         </ImageView>
-        <Label style="-fx-font-family: 'Inter'; -fx-font-size: 16px; -fx-font-weight: bold;" text="Bem vindo ao Finncker"/>
-        <Label style="-fx-font-family: 'Inter'; -fx-font-size: 16px;" text="Configure sua conta para começar a gerenciar suas finanças" textAlignment="CENTER" wrapText="true"/>
-        <VBox alignment="CENTER" spacing="15.0" style="-fx-background-color: #FFFEFE; -fx-background-radius: 10; -fx-border-color: black; -fx-border-radius: 10; -fx-border-width: 0.2;">
+        <Label styleClass="h3" text="Bem vindo ao Finncker"/>
+        <Label styleClass="body-text" text="Configure sua conta para começar a gerenciar suas finanças" textAlignment="CENTER" wrapText="true"/>
+        <VBox alignment="CENTER" spacing="15.0" styleClass="card">
           <children>
             <VBox alignment="CENTER_LEFT" spacing="10.0">
               <children>
-                <Label style="-fx-font-family: 'Inter'; -fx-font-size: 16px; -fx-font-weight: bold;" text="Configuração Inicial"/>
-                <Label style="-fx-font-family: 'Inter'; -fx-font-size: 16px;" text="Insira as seguintes informações para personalizar sua experiência" wrapText="true"/>
-                <Label style="-fx-font-family: 'Inter'; -fx-font-size: 16px; -fx-font-weight: bold;" text="Nome Completo"/>
-                <TextField fx:id="userNameTextField" promptText="Digite seu nome completo" style="-fx-background-color: #EEEEEE; -fx-background-radius: 10; -fx-font-family: 'Inter'; -fx-font-size: 16px;">
+                <Label styleClass="label-text" text="Configuração Inicial"/>
+                <Label styleClass="body-text" text="Insira as seguintes informações para personalizar sua experiência" wrapText="true"/>
+                <Label styleClass="label-text" text="Nome Completo"/>
+                <TextField fx:id="userNameTextField" promptText="Digite seu nome completo" styleClass="input-field">
                   <padding>
                     <Insets bottom="8.0" left="8.0" right="8.0" top="8.0"/>
                   </padding>
                 </TextField>
-                <Label style="-fx-font-family: 'Inter'; -fx-font-size: 16px; -fx-font-weight: bold;" text="Email"/>
-                <TextField fx:id="userEmailTextField" promptText="seu@email.com" style="-fx-background-color: #EEEEEE; -fx-background-radius: 10; -fx-font-family: 'Inter'; -fx-font-size: 16px;">
+                <Label styleClass="label-text" text="Email"/>
+                <TextField fx:id="userEmailTextField" promptText="seu@email.com" styleClass="input-field">
                   <padding>
                     <Insets bottom="8.0" left="8.0" right="8.0" top="8.0"/>
                   </padding>
@@ -45,7 +45,7 @@
                 <Insets/>
               </VBox.margin>
             </VBox>
-            <Button fx:id="startButton" maxWidth="Infinity" onAction="#handleStartButton" style="-fx-background-color: black; -fx-background-radius: 10; -fx-font-family: 'Inter'; -fx-font-size: 16px; -fx-font-weight: bold;" text="Começar" textFill="white">
+            <Button fx:id="startButton" maxWidth="Infinity" onAction="#handleStartButton" styleClass="btn-primary" text="Começar">
               <padding>
                 <Insets bottom="8.0" left="8.0" right="8.0" top="8.0"/>
               </padding>
@@ -65,7 +65,7 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
           </padding>
         </VBox>
-        <Label style="-fx-font-family: 'Inter'; -fx-font-size: 16px;" text="Seus dados são armazenados localmente e de forma segura" textAlignment="CENTER" wrapText="true"/>
+        <Label styleClass="small-text" text="Seus dados são armazenados localmente e de forma segura" textAlignment="CENTER" wrapText="true"/>
       </children>
     </VBox>
   </center>

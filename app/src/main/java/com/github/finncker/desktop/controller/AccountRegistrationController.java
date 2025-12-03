@@ -1,7 +1,16 @@
 package com.github.finncker.desktop.controller;
 
+import java.math.BigDecimal;
+
+import com.github.finncker.desktop.model.entities.Account;
+import com.github.finncker.desktop.service.AccountService;
+import com.github.finncker.desktop.util.FormatUtil;
+
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import lombok.extern.java.Log;
 
@@ -26,6 +35,9 @@ public class AccountRegistrationController {
     private Button cancelButton;
     @FXML
     private Button saveButton;
+
+    private AccountService accountService = new AccountService();
+    private AccountsViewController parentController;
 
     @FXML
     public void initialize() {
@@ -91,16 +103,35 @@ public class AccountRegistrationController {
         if (!validateFields())
             return;
 
-        log.info(String.format("Salvando conta: %s, %s, %s, %s, %s, %s",
-                accountTypeComboBox.getValue(),
-                accountNameField.getText().trim(),
-                financialInstitutionField.getText().trim(),
-                initialBalanceField.getText().trim(),
-                accountNumberField.getText().trim(),
-                colorComboBox.getValue()));
+        try {
+            BigDecimal initialBalance = FormatUtil.parseCurrency(initialBalanceField.getText().trim());
 
-        showAlert(Alert.AlertType.INFORMATION, "Sucesso", "Conta salva com sucesso!");
-        handleClose();
+            Account account = Account.builder()
+                    .name(accountNameField.getText().trim())
+                    .accountType(accountTypeComboBox.getValue())
+                    .institution(financialInstitutionField.getText().trim())
+                    .accountNumber(accountNumberField.getText().trim())
+                    .color(colorComboBox.getValue())
+                    .initialBalance(initialBalance)
+                    .build();
+
+            accountService.create(account);
+
+            log.info(String.format("Conta salva: %s, %s, %s, %s",
+                    account.getName(), account.getAccountType(),
+                    account.getInstitution(), FormatUtil.formatCurrency(initialBalance)));
+
+            showAlert(Alert.AlertType.INFORMATION, "Sucesso", "Conta salva com sucesso!");
+
+            if (parentController != null) {
+                parentController.refresh();
+            }
+
+            handleClose();
+        } catch (Exception e) {
+            log.severe("Erro ao salvar conta: " + e.getMessage());
+            showAlert(Alert.AlertType.ERROR, "Erro", "Erro ao salvar conta: " + e.getMessage());
+        }
     }
 
     private boolean validateFields() {
@@ -146,5 +177,9 @@ public class AccountRegistrationController {
         initialBalanceField.clear();
         accountNumberField.clear();
         colorComboBox.setValue("Azul");
+    }
+
+    public void setParentController(AccountsViewController parentController) {
+        this.parentController = parentController;
     }
 }

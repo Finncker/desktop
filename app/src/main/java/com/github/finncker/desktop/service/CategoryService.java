@@ -37,4 +37,8 @@ public class CategoryService {
 
     categoryRepository.delete(uuid);
   }
+
+  public java.util.List<Category> getAll() {
+    return categoryRepository.getAll();
+  }
 }

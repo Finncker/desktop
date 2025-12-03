@@ -13,99 +13,99 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 
-<VBox alignment="CENTER" maxHeight="Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" spacing="10.0" style="-fx-background-color: #FFFEFE;" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.finncker.desktop.controller.SidePanelController">
+<VBox alignment="CENTER" maxHeight="Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" spacing="10.0" styleClass="bg-card" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/22.0.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.finncker.desktop.controller.SidePanelController">
   <children>
     <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
       <image>
-        <Image url="@../images/finncker-logo.png" />
+        <Image url="@../images/finncker-logo.png"/>
       </image>
       <VBox.margin>
-        <Insets bottom="15.0" />
+        <Insets bottom="15.0"/>
       </VBox.margin>
     </ImageView>
-    <Separator focusTraversable="false" />
+    <Separator focusTraversable="false"/>
     <VBox alignment="CENTER_LEFT" spacing="2.0">
       <children>
-        <Button maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" onAction="#handleButtonDashboard" style="-fx-background-color: transparent; -fx-background-radius: 10;">
+        <Button maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" onAction="#handleButtonDashboard" styleClass="nav-button" text="Dashboard">
           <graphic>
             <HBox alignment="CENTER_LEFT" spacing="12.0">
               <children>
                 <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                   <image>
-                    <Image url="@../images/dashboard-icon.png" />
+                    <Image url="@../images/dashboard-icon.png"/>
                   </image>
                 </ImageView>
-                <Label style="-fx-font-family: 'Inter'; -fx-font-size: 16px; -fx-font-weight: bold;" text="Dashboard" />
+                <Label styleClass="nav-button" text="Dashboard"/>
               </children>
             </HBox>
           </graphic>
           <VBox.margin>
-            <Insets />
+            <Insets/>
           </VBox.margin>
           <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
           </padding>
         </Button>
-        <Button maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" onAction="#handleButtonTransactions" style="-fx-background-color: transparent; -fx-background-radius: 10;">
+        <Button maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" onAction="#handleButtonTransactions" styleClass="nav-button">
           <graphic>
             <HBox alignment="CENTER_LEFT" spacing="12.0">
               <children>
                 <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                   <image>
-                    <Image url="@../images/transactions-icon.png" />
+                    <Image url="@../images/transactions-icon.png"/>
                   </image>
                 </ImageView>
-                <Label style="-fx-font-family: 'Inter'; -fx-font-size: 16px; -fx-font-weight: bold;" text="Transações" />
+                <Label styleClass="nav-button" text="Transações"/>
               </children>
             </HBox>
           </graphic>
           <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
           </padding>
         </Button>
-        <Button maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" onAction="#handleButtonAccounts" style="-fx-background-color: transparent; -fx-background-radius: 10;">
+        <Button maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" onAction="#handleButtonAccounts" styleClass="nav-button">
           <graphic>
             <HBox alignment="CENTER_LEFT" spacing="12.0">
               <children>
                 <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                   <image>
-                    <Image url="@../images/accounts-icon.png" />
+                    <Image url="@../images/accounts-icon.png"/>
                   </image>
                 </ImageView>
-                <Label style="-fx-font-family: 'Inter'; -fx-font-size: 16px; -fx-font-weight: bold;" text="Contas" />
+                <Label styleClass="nav-button" text="Contas"/>
               </children>
             </HBox>
           </graphic>
           <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
           </padding>
         </Button>
-        <Button maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" onAction="#handleButtonCategories" style="-fx-background-color: transparent; -fx-background-radius: 10;">
+        <Button maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" onAction="#handleButtonCategories" styleClass="nav-button">
           <graphic>
             <HBox alignment="CENTER_LEFT" spacing="12.0">
               <children>
                 <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                   <image>
-                    <Image url="@../images/categories-icon.png" />
+                    <Image url="@../images/categories-icon.png"/>
                   </image>
                 </ImageView>
-                <Label style="-fx-font-family: 'Inter'; -fx-font-size: 16px; -fx-font-weight: bold;" text="Categorias" />
+                <Label styleClass="nav-button" text="Categorias"/>
               </children>
             </HBox>
           </graphic>
           <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
           </padding>
         </Button>
       </children>
       <VBox.margin>
-        <Insets left="15.0" right="15.0" />
+        <Insets left="15.0" right="15.0"/>
       </VBox.margin>
     </VBox>
-    <Region VBox.vgrow="ALWAYS" />
+    <Region VBox.vgrow="ALWAYS"/>
     <Separator prefWidth="200.0">
       <VBox.margin>
-        <Insets />
+        <Insets/>
       </VBox.margin>
     </Separator>
     <HBox alignment="CENTER" spacing="12.0">
@@ -114,44 +114,44 @@
           <children>
             <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
               <image>
-                <Image url="@../images/user-icon.png" />
+                <Image url="@../images/user-icon.png"/>
               </image>
             </ImageView>
           </children>
         </Pane>
         <VBox alignment="CENTER_LEFT">
           <children>
-            <Label fx:id="userNameLabel" style="-fx-font-family: 'Inter'; -fx-font-size: 14px; -fx-font-weight: bold;" text="Nome Completo">
+            <Label fx:id="userNameLabel" styleClass="label-text" text="Nome Completo">
                   </Label>
-            <Label fx:id="userEmailLabel" style="-fx-font-family: 'Inter'; -fx-font-size: 12px;" text="usuario@email.com">
+            <Label fx:id="userEmailLabel" styleClass="small-text" text="usuario@email.com">
                   </Label>
           </children>
         </VBox>
       </children>
       <VBox.margin>
-        <Insets left="15.0" right="15.0" />
+        <Insets left="15.0" right="15.0"/>
       </VBox.margin>
     </HBox>
-    <VBox style="-fx-background-color: #E0E0E0; -fx-background-radius: 10;">
+    <VBox styleClass="bg-neutral" style="-fx-background-radius: 10;">
       <children>
-        <Label style="-fx-font-family: 'Inter'; -fx-font-size: 16px; -fx-font-weight: bold;" text="Saldo Total" />
-        <Label fx:id="userBalanceLabel" style="-fx-font-family: 'Inter'; -fx-font-size: 16px;" text="R$ 0.00" />
+        <Label styleClass="h3" style="-fx-font-size: 16px;" text="Saldo Total"/>
+        <Label fx:id="userBalanceLabel" styleClass="body-text" style="-fx-font-size: 16px;" text="R$ 0.00"/>
       </children>
       <VBox.margin>
-        <Insets left="15.0" right="15.0" />
+        <Insets left="15.0" right="15.0"/>
       </VBox.margin>
       <padding>
-        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
       </padding>
     </VBox>
   </children>
   <padding>
-    <Insets bottom="25.0" top="25.0" />
+    <Insets bottom="25.0" top="25.0"/>
   </padding>
   <effect>
     <DropShadow height="20.0" radius="9.5" width="20.0">
       <color>
-        <Color opacity="0.2" />
+        <Color opacity="0.2"/>
       </color>
     </DropShadow>
   </effect>
