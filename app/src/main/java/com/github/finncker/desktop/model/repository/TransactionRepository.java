@@ -1,21 +1,117 @@
 package com.github.finncker.desktop.model.repository;
 
-import com.github.finncker.desktop.model.entities.Transaction;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
-public class TransactionRepository extends AbstractRepository<Transaction> {
+import com.github.finncker.desktop.model.entities.Account;
+import com.github.finncker.desktop.model.entities.Transaction;
+import com.github.finncker.desktop.model.entities.User;
+import com.github.finncker.desktop.model.exceptions.TransactionNotFoundException;
+import com.github.finncker.desktop.model.exceptions.UserNotFoundException;
+
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+public class TransactionRepository extends AbstractRepository {
 
     public TransactionRepository() {
-        super("transactions.dat");
+        super();
     }
 
-    @Override
-    protected String getId(Transaction entity) {
-        return entity.getId().toString();
+    public void create(UUID accountUUID, Transaction transaction) {
+        try {
+            User user = getUser();
+
+            for (Account account : user.getAccounts()) {
+                if (account.getUuid().equals(accountUUID)) {
+                    account.getTransactions().add(transaction);
+                    setUser(user);
+                }
+            }
+        } catch (UserNotFoundException unfe) {
+            log.error("Erro ao criar transação, usuário inexistente: {}", unfe);
+        }
     }
 
-    @Override
-    protected boolean matchId(Transaction entity, String id) {
-        return entity.getId().toString().equals(id);
+    public Transaction read(UUID accountUUID, UUID TransactionUUID) throws TransactionNotFoundException {
+        try {
+            User user = getUser();
+
+            for (Account account : user.getAccounts()) {
+                if (account.getUuid().equals(accountUUID)) {
+                    for (Transaction transaction : account.getTransactions()) {
+                        if (transaction.getUuid().equals(TransactionUUID)) {
+                            return transaction;
+                        }
+                    }
+                    break;
+                }
+            }
+        } catch (UserNotFoundException unfe) {
+            log.error("Erro ao ler transação, usuário inexistente: {}", unfe);
+        }
+
+        throw new TransactionNotFoundException();
     }
-    
+
+    public void update(UUID accountUUID, Transaction transaction) throws TransactionNotFoundException {
+        try {
+            User user = getUser();
+
+            for (Account account : user.getAccounts()) {
+                if (account.getUuid().equals(accountUUID)) {
+                    for (int i = 0; i < account.getTransactions().size(); i++) {
+                        if (account.getTransactions().get(i).equals(transaction)) {
+                            account.getTransactions().set(i, transaction);
+                            setUser(user);
+                            return;
+                        }
+                    }
+                    break;
+                }
+            }
+        } catch (UserNotFoundException unfe) {
+            log.error("Erro ao atualizar transação, usuário inexistente: {}", unfe);
+        }
+
+        throw new TransactionNotFoundException();
+    }
+
+    public void delete(UUID accountUUID, UUID transactionUUID) {
+        try {
+            User user = getUser();
+
+            for (Account account : user.getAccounts()) {
+                if (account.getUuid().equals(accountUUID)) {
+                    for (int i = 0; i < account.getTransactions().size(); i++) {
+                        if (account.getTransactions().get(i).getUuid().equals(transactionUUID)) {
+                            account.getTransactions().remove(i);
+                            setUser(user);
+                            return;
+                        }
+                    }
+                    break;
+                }
+            }
+        } catch (UserNotFoundException unfe) {
+            log.error("Erro ao deletar transação, usuário inexistente: {}", unfe);
+        }
+    }
+
+    public List<Transaction> getAll() {
+        List<Transaction> allTransactions = new ArrayList<>();
+
+        try {
+            User user = getUser();
+
+            for (Account account : user.getAccounts()) {
+                allTransactions.addAll(account.getTransactions());
+            }
+        } catch (UserNotFoundException unfe) {
+            log.error("Erro ao listar transações, usuário inexistente: {}", unfe);
+        }
+
+        return allTransactions;
+    }
 }

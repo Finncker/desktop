@@ -1,5 +1,7 @@
 package com.github.finncker.desktop.service;
 
+import java.util.UUID;
+
 import com.github.finncker.desktop.model.entities.Transaction;
 import com.github.finncker.desktop.model.exceptions.TransactionNotFoundException;
 import com.github.finncker.desktop.model.repository.TransactionRepository;
@@ -9,40 +11,31 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class TransactionService {
 
-    private TransactionRepository transRepo = new TransactionRepository();
+  private TransactionRepository transactionRepository = new TransactionRepository();
 
-    public Transaction create(Transaction tct) {
-        log.info("Criando transação: id = {}", tct.getId());
-        return transRepo.create(tct);
-    }
+  public void create(UUID accountUUID, Transaction transaction) {
+    log.info("Criando transação: id = {}", transaction.getUuid());
 
-    public Transaction read(String id) throws TransactionNotFoundException {
-         log.info("Buscando transação id = {}", id);
-        Transaction a = transRepo.read(id);
+    transactionRepository.create(accountUUID, transaction);
+  }
 
-        if (a == null) {
-            log.warn("Transação não encontrada: id = {}", id);
-            throw new TransactionNotFoundException();
-        }
+  public Transaction read(UUID accountUUID, UUID uuid) throws TransactionNotFoundException {
+    log.info("Buscando transação id = {}", uuid);
 
-        return a;
-    }
+    Transaction transaction = transactionRepository.read(accountUUID, uuid);
 
-    public Transaction update(Transaction tct) {
-        log.info("Atualizando transação id = {}", tct.getId());
-        return transRepo.update(tct);
-    }
+    return transaction;
+  }
 
-    public boolean delete(String id) throws TransactionNotFoundException {
-        log.info("Tentando deletar transação id = {}", id);
-        boolean deleted = transRepo.delete(id);
+  public void update(UUID accountUUID, Transaction transaction) throws TransactionNotFoundException {
+    log.info("Atualizando transação id = {}", transaction.getUuid());
 
-        if (!deleted) {
-            log.error("Erro ao deletar transação: id = {}", id);
-            throw new TransactionNotFoundException();
-        }
+    transactionRepository.update(accountUUID, transaction);
+  }
 
-        log.info("Transação deletada com sucesso: id={}", id);
-        return true;
-    }
+  public void delete(UUID accountUUID, UUID uuid) {
+    log.info("Tentando deletar transação id = {}", uuid);
+
+    transactionRepository.delete(accountUUID, uuid);
+  }
 }

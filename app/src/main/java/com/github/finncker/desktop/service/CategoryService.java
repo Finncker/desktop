@@ -1,48 +1,40 @@
 package com.github.finncker.desktop.service;
 
+import java.util.UUID;
+
+import com.github.finncker.desktop.model.entities.Category;
+import com.github.finncker.desktop.model.exceptions.CategoryNotFoundException;
 import com.github.finncker.desktop.model.repository.CategoryRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
-import com.github.finncker.desktop.model.entities.Category;
-import com.github.finncker.desktop.model.exceptions.CategoryNotFoundException;
-
 @Slf4j
 public class CategoryService {
 
-    private CategoryRepository catRepo = new CategoryRepository();
+  private CategoryRepository categoryRepository = new CategoryRepository();
 
-    public Category create(Category cat) {
-        log.info("Criando categoria: {}", cat.getName());
-        return catRepo.create(cat);
-    }
+  public void create(Category category) {
+    log.info("Criando categoria: {}", category.getName());
+    categoryRepository.create(category);
+  }
 
-    public Category read(String id) throws CategoryNotFoundException {
-        log.info("Buscando categoria id = {}", id);
-        Category a = catRepo.read(id);
+  public Category read(UUID uuid) throws CategoryNotFoundException {
+    log.info("Buscando categoria id = {}", uuid);
 
-        if (a == null) {
-            log.warn("Categoria não encontrada: id = {}", id);
-            throw new CategoryNotFoundException(id);
-        }
+    Category category = categoryRepository.read(uuid);
 
-        return a;
-    }
+    return category;
+  }
 
-    public Category update(Category cat) {
-        log.info("Atualizando categoria id = {}", cat.getId());
-        return catRepo.update(cat);
-    }
+  public void update(Category category) throws CategoryNotFoundException {
+    log.info("Atualizando categoria id = {}", category.getUuid());
 
-    public boolean delete(String id) throws CategoryNotFoundException {
-        log.info("Tentando deletar categoria id = {}", id);
-        boolean deleted = catRepo.delete(id);
+    categoryRepository.update(category);
+  }
 
-        if (!deleted) {
-            log.error("Erro ao deletar categoria: id = {}", id);
-            throw new CategoryNotFoundException(id);
-        }
+  public void delete(UUID uuid) {
+    log.info("Tentando deletar categoria id = {}", uuid);
 
-        return true;
-    }
+    categoryRepository.delete(uuid);
+  }
 }

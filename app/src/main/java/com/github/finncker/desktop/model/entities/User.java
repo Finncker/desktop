@@ -2,35 +2,28 @@ package com.github.finncker.desktop.model.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Getter
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of = "id")
-@ToString(exclude = "accounts")
+@ToString(exclude = { "accounts", "categories" })
 public class User implements Serializable {
 
-    private String id;
     private String fullName;
     private String email;
 
     @Builder.Default
-    private List<Account> accounts = new ArrayList<Account>();
+    private List<Account> accounts = new ArrayList<>();
 
-    @Builder
-    public User(String id, String fullName, String email) {
-        this.id = id;
-        this.fullName = fullName;
-        this.email = email;
-        this.accounts = (accounts == null ? new ArrayList<>() : accounts);
-    }
+    @Builder.Default
+    private Map<UUID, Category> categories = new HashMap<>();
 }

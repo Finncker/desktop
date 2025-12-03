@@ -1,9 +1,10 @@
 package com.github.finncker.desktop.model.exceptions;
 
+import java.util.UUID;
+
 public class AccountNotFoundException extends Exception {
 
-    public AccountNotFoundException (String name) {
-        super("ERRO: A conta de \"" + name + "\" não foi encontrada.");
+    public AccountNotFoundException(UUID uuid) {
+        super("ERRO: A conta com o id \"" + uuid + "\" não foi encontrada.");
     }
-    
 }
