@@ -10,3 +10,7 @@ app/bin
 # Ignore .idea, .vscode folders
 .idea
 .vscode
+
+# Ignore .ser, .dat files
+.ser
+.dat
