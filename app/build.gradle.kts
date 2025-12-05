@@ -33,7 +33,7 @@ dependencies {
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(24)
+        languageVersion = JavaLanguageVersion.of(25)
     }
 }
 
@@ -42,7 +42,7 @@ application {
 }
 
 javafx {
-    version = "22"
+    version = "25"
     modules = listOf("javafx.controls", "javafx.fxml")
 }
 
