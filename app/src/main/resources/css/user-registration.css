@@ -1,0 +1,39 @@
+.bold-text {
+  -fx-font-weight: bold;
+}
+
+.large-text {
+  -fx-font-size: 18px;
+}
+
+.vbox {
+  -fx-spacing: 10px;
+}
+
+.form-vbox {
+  -fx-padding: 20px;
+  -fx-border-color: black;
+  -fx-border-radius: 10px;
+  -fx-border-width: 0.2px;
+  -fx-background-radius: 10px;
+  -fx-background-color: white;
+  -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.15), 4, 0, 2, 2);
+}
+
+.inner-vbox {
+  -fx-spacing: 5px;
+}
+
+.button-and-text-field {
+  -fx-background-radius: 10px;
+  -fx-padding: 8px;
+}
+
+.text-field {
+  -fx-background-color: #F5F5F5;
+}
+
+.button {
+  -fx-background-color: #2C8DBA;
+  -fx-text-fill: white;
+}

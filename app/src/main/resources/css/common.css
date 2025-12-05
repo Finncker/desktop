@@ -1,0 +1,16 @@
+@font-face {
+  font-family: 'Inter';
+  src: url("../fonts/Inter-Regular.ttf");
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-weight: bold;
+  src: url("../fonts/Inter-Bold.ttf");
+}
+
+.root {
+  -fx-font-family: 'Inter';
+  -fx-font-size: 16px;
+  -fx-background-color: #F5F5F5;
+}
