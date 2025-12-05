@@ -18,3 +18,15 @@
 .bold-text {
   -fx-font-weight: bold;
 }
+
+.large-text {
+  -fx-font-size: 18px;
+}
+
+.extra-large-text {
+  -fx-font-size: 22px;
+}
+
+.box {
+  -fx-spacing: 8px;
+}

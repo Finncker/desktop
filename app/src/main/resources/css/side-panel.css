@@ -1,5 +1,6 @@
 .root {
   -fx-background-color: white;
+  -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.15), 4, 0, 2, 0);
 }
 
 .screen-selector {
@@ -16,10 +17,6 @@
 .button:hover {
   -fx-background-color: #2c8dba15;
   -fx-content-color: #2C8DBA;
-}
-
-.box {
-  -fx-spacing: 8px;
 }
 
 .button-label {
