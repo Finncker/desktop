@@ -1,0 +1,96 @@
+.root {
+  -fx-background-color: white;
+}
+
+.screen-selector {
+  -fx-spacing: 2px;
+}
+
+.button {
+  -fx-padding: 10px;
+  -fx-background-radius: 10px;
+  -fx-background-color: transparent;
+  -fx-content-color: black;
+}
+
+.button:hover {
+  -fx-background-color: #2c8dba15;
+  -fx-content-color: #2C8DBA;
+}
+
+.box {
+  -fx-spacing: 8px;
+}
+
+.button-label {
+  -fx-text-fill: -fx-content-color;
+}
+
+.dashboard-icon {
+  -fx-shape: "M280-280h80v-200h-80v200Zm320 0h80v-400h-80v400Zm-160 0h80v-120h-80v120Zm0-200h80v-80h-80v80ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm0-560v560-560Z";
+
+  -fx-background-color: -fx-content-color;
+
+  -fx-min-height: 20px;
+  -fx-min-width: 20px;
+  -fx-max-height: 20px;
+  -fx-max-width: 20px;
+}
+
+.transactions-icon {
+  -fx-shape: "M240-80q-50 0-85-35t-35-85v-120h120v-560l60 60 60-60 60 60 60-60 60 60 60-60 60 60 60-60 60 60 60-60v680q0 50-35 85t-85 35H240Zm480-80q17 0 28.5-11.5T760-200v-560H320v440h360v120q0 17 11.5 28.5T720-160ZM360-600v-80h240v80H360Zm0 120v-80h240v80H360Zm320-120q-17 0-28.5-11.5T640-640q0-17 11.5-28.5T680-680q17 0 28.5 11.5T720-640q0 17-11.5 28.5T680-600Zm0 120q-17 0-28.5-11.5T640-520q0-17 11.5-28.5T680-560q17 0 28.5 11.5T720-520q0 17-11.5 28.5T680-480ZM240-160h360v-80H200v40q0 17 11.5 28.5T240-160Zm-40 0v-80 80Z";
+
+  -fx-background-color: -fx-content-color;
+
+  -fx-min-height: 20px;
+  -fx-min-width: 20px;
+  -fx-max-height: 20px;
+  -fx-max-width: 20px;
+}
+
+.accounts-icon {
+  -fx-shape: "M200-200v-560 560Zm0 80q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v100h-80v-100H200v560h560v-100h80v100q0 33-23.5 56.5T760-120H200Zm320-160q-33 0-56.5-23.5T440-360v-240q0-33 23.5-56.5T520-680h280q33 0 56.5 23.5T880-600v240q0 33-23.5 56.5T800-280H520Zm280-80v-240H520v240h280Zm-160-60q25 0 42.5-17.5T700-480q0-25-17.5-42.5T640-540q-25 0-42.5 17.5T580-480q0 25 17.5 42.5T640-420Z";
+
+  -fx-background-color: -fx-content-color;
+
+  -fx-min-height: 20px;
+  -fx-min-width: 20px;
+  -fx-max-height: 20px;
+  -fx-max-width: 20px;
+}
+
+.categories-icon {
+  -fx-shape: "m260-520 220-360 220 360H260ZM700-80q-75 0-127.5-52.5T520-260q0-75 52.5-127.5T700-440q75 0 127.5 52.5T880-260q0 75-52.5 127.5T700-80Zm-580-20v-320h320v320H120Zm580-60q42 0 71-29t29-71q0-42-29-71t-71-29q-42 0-71 29t-29 71q0 42 29 71t71 29Zm-500-20h160v-160H200v160Zm202-420h156l-78-126-78 126Zm78 0ZM360-340Zm340 80Z";
+
+  -fx-background-color: -fx-content-color;
+
+  -fx-min-height: 20px;
+  -fx-min-width: 20px;
+  -fx-max-height: 20px;
+  -fx-max-width: 20px;
+}
+
+.user-icon {
+  -fx-shape: "M234-276q51-39 114-61.5T480-360q69 0 132 22.5T726-276q35-41 54.5-93T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 59 19.5 111t54.5 93Zm246-164q-59 0-99.5-40.5T340-580q0-59 40.5-99.5T480-720q59 0 99.5 40.5T620-580q0 59-40.5 99.5T480-440Zm0 360q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q53 0 100-15.5t86-44.5q-39-29-86-44.5T480-280q-53 0-100 15.5T294-220q39 29 86 44.5T480-160Zm0-360q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm0-60Zm0 360Z";
+
+  -fx-background-color: #2C8DBA;
+
+  -fx-min-height: 25px;
+  -fx-min-width: 25px;
+  -fx-max-height: 25px;
+  -fx-max-width: 25px;
+}
+
+.user-name-label {
+  -fx-font-size: 14px;
+}
+
+.user-email-label {
+  -fx-font-size: 12px;
+}
+
+.balance-vbox {
+  -fx-padding: 10px;
+  -fx-background-color: #F5F5F5;
+  -fx-background-radius: 10px;
+}
