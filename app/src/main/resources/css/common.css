@@ -14,3 +14,7 @@
   -fx-font-size: 16px;
   -fx-background-color: #F5F5F5;
 }
+
+.bold-text {
+  -fx-font-weight: bold;
+}
